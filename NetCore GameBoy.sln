@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameboy", "Gameboy\Gameboy.csproj", "{F2A95D5B-9E01-4DEC-96F2-EFBAE37930DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameboyTests", "GameboyTests\GameboyTests.csproj", "{04F5F19B-60A6-4FD6-8CAE-979EC427D75B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameboyInterfaces", "GameboyInterfaces\GameboyInterfaces.csproj", "{2E570ACE-338F-4E8F-B909-572880ADDBFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameboyHardware", "GameboyHardware\GameboyHardware.csproj", "{99878505-4789-40DB-B02A-56AE68188EE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2A95D5B-9E01-4DEC-96F2-EFBAE37930DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2A95D5B-9E01-4DEC-96F2-EFBAE37930DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2A95D5B-9E01-4DEC-96F2-EFBAE37930DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2A95D5B-9E01-4DEC-96F2-EFBAE37930DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04F5F19B-60A6-4FD6-8CAE-979EC427D75B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04F5F19B-60A6-4FD6-8CAE-979EC427D75B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04F5F19B-60A6-4FD6-8CAE-979EC427D75B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04F5F19B-60A6-4FD6-8CAE-979EC427D75B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E570ACE-338F-4E8F-B909-572880ADDBFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E570ACE-338F-4E8F-B909-572880ADDBFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E570ACE-338F-4E8F-B909-572880ADDBFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E570ACE-338F-4E8F-B909-572880ADDBFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99878505-4789-40DB-B02A-56AE68188EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99878505-4789-40DB-B02A-56AE68188EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99878505-4789-40DB-B02A-56AE68188EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99878505-4789-40DB-B02A-56AE68188EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
