@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Gameboy.Interfaces\Gameboy.Interfaces.csproj" />
+    </ItemGroup>
+
+      <PropertyGroup>
+        <LangVersion>8.0</LangVersion>
+      </PropertyGroup>
+
+</Project>

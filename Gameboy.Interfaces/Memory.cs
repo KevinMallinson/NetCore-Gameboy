@@ -1,4 +1,4 @@
-namespace GameboyInterfaces
+namespace Gameboy.Interfaces
 {
     public enum MemoryRegion
     {
@@ -14,7 +14,7 @@ namespace GameboyInterfaces
         HIGH_RAM,
         INTERRUPT_FLAG
     }
-    
+
     public class GBMemory
     {
         public bool IsByte { get; }
@@ -22,9 +22,9 @@ namespace GameboyInterfaces
 
         public ushort Data { get; }
         public ushort Address { get; }
-        
+
         public GBMemory()
-        { 
+        {
             Region = MemoryRegion.SET_ONLY;
             Data = 0;
             Address = 0;

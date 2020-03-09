@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace GameboyHardware
+namespace Gameboy.Hardware
 {
     //B, C, D, E, H, L, F, A
-    public enum Registers {
+    public enum Registers
+    {
         B = 0,
         C = 1,
         D = 2,
@@ -13,7 +14,7 @@ namespace GameboyHardware
         F = 6,
         A = 7
     };
-    
+
     public class CPU
     {
         public byte A { get; set; }
@@ -30,7 +31,7 @@ namespace GameboyHardware
         }
         public byte H { get; set; }
         public byte L { get; set; }
-        
+
         public ushort AF
         {
             get => (ushort)(A << 8 | F);
@@ -38,26 +39,26 @@ namespace GameboyHardware
             {
                 //Flags last 4 bits always zero (ZNHC0000)
                 A = (byte)(value >> 8);
-                F = (byte) (value & 0x00F0);
+                F = (byte)(value & 0x00F0);
             }
         }
-        public ushort BC 
+        public ushort BC
         {
             get => (ushort)(B << 8 | C);
             set
             {
                 B = (byte)(value >> 8);
-                C = (byte) (value & 0x00FF);
+                C = (byte)(value & 0x00FF);
 
             }
         }
-        public ushort DE             
+        public ushort DE
         {
             get => (ushort)(D << 8 | E);
             set
-            {    
+            {
                 D = (byte)(value >> 8);
-                E = (byte) (value & 0x00FF);
+                E = (byte)(value & 0x00FF);
             }
         }
 
@@ -67,10 +68,10 @@ namespace GameboyHardware
             set
             {
                 H = (byte)(value >> 8);
-                L = (byte) (value & 0x00FF);
+                L = (byte)(value & 0x00FF);
             }
         }
-        
+
         /// <summary>
         /// Access the registers via its index in the following order:
         /// B, C, D, E, H, L, F, A
@@ -97,7 +98,7 @@ namespace GameboyHardware
 
             set
             {
-                switch(key)
+                switch (key)
                 {
                     case 0:
                         B = (byte)value;
@@ -132,5 +133,5 @@ namespace GameboyHardware
         private byte _f;
         private ushort _pc;
         private ushort _sp;
-    } 
+    }
 }

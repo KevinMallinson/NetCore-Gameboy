@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "path": "Gameboy"
+    },
+    {
+      "path": "Gameboy.Hardware"
+    },
+    {
+      "path": "Gameboy.Interfaces"
+    },
+    {
+      "path": "Gameboy.Tests"
+    }
+  ],
+  "settings": {}
+}

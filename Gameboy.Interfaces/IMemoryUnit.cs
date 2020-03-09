@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameboyInterfaces
+namespace Gameboy.Interfaces
 {
     public interface IMemoryUnit
     {

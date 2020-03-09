@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/.idea.NetCore GameBoy.iml" filepath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/.idea.NetCore GameBoy.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/riderModule.iml" filepath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/riderModule.iml" />
     </modules>
   </component>
