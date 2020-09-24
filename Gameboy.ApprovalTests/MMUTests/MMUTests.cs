@@ -1,8 +1,11 @@
 using System;
 using System.Text;
+using ApprovalTests;
+using ApprovalTests.Reporters;
 using Gameboy.Hardware;
 using Gameboy.Interfaces;
 using Xunit;
+using Xunit.Abstractions;
 
 //Start		End		Description
 //0000		3FFF	16KB ROM Bank
@@ -20,130 +23,81 @@ using Xunit;
 
 namespace Gameboy.ApprovalTests.MMUTests
 {
+    [UseReporter(typeof(DiffReporter))]
     public class MMUTests
     {
+        private readonly ITestOutputHelper _output;
+
+        public MMUTests(ITestOutputHelper output)
+        {
+            _output = output;
+        }
+        
         [Fact]
         public void Memory_ValidateBytes_WithSuccess()
         {
+            // SET UP THE MEMORY
             var headers = $"{"Address",-11}{"Expected",-12}{"Actual",-10}{"Expected",-26}{"Actual",-26}\n";
             var output = new StringBuilder(headers);
-            
-            var rand = new Random();
-            var expectedValues = new byte[0xFFFF + 1];
-            var workRamStart = 0xC000;
             var gpu = new GPU();
             var bus = new Bus(gpu);
             IMemoryUnit mmu = new MMU(bus);
-
-            // Set up a list, equal in length to our RAM, filled with random numbers.
-            //i is an int to prevent an infinite loop (ushort will overflow back to 0 on the last increment).
-            for (var i = 0; i <= 0xFFFF; i++)
+            var expectedValues = new byte[0xFFFF + 1];
+            
+            var i = 0;
+            while(i < 0xFFFF)
             {
-                byte val;
-                var isEcho = false;
-
-                // Echo ram is a copy of work ram, so insert those values to the expected array.
-                if (i >= 0xE000 && i <= 0xFDFF)
-                {
-                    val = expectedValues[workRamStart++];
-                    isEcho = true;
-                }
-
-                // Unused Address Space - can only be 0 by design.
-                else if (i >= 0xFEA0 && i <= 0xFEFF)
-                {
-                    val = 0;
-                }
+                if (i == 0xE000) // Skip Echo RAM
+                    i = 0xFE00;
                 
-                // Interrupt Enable Flag can only be 0 or 1.
-                else if (i == 0xFFFF)
-                {
-                    val = (byte) rand.Next(0, 2); // upper bound is exclusive
-                }
-                
-                // For all other cases
-                else
-                {
-                    val = (byte) rand.Next(0, 256); // upper bound is exclusive
-                }
-
-                expectedValues[i] = val;
-
-                // Either set the byte to 0 (for unused address space),
-                // 0 or 1 for Interrupt Enable Flag,
-                // or the random (for everything except echo ram).
-                if (!isEcho)
-                {
-                    mmu.SetByte((ushort) i, expectedValues[i]);
-                }
+                expectedValues[i] = (byte) (i % 256);
+                mmu.SetByte((ushort) i, expectedValues[i]);
+                i++;
             }
-
-            try
+            
+            Array.ConstrainedCopy(
+                expectedValues, 
+                0xC000, 
+                expectedValues, 
+                0xE000, 
+                7680
+            ); // Copy the work ram into the echo ram
+            Array.Fill(expectedValues, (byte)0, 0xFEA0, 96); // Unusable Address Space
+            
+            expectedValues[0xFFFF] = 1; // Interrupt Enable Flag
+            mmu.SetByte(0xFFFF, expectedValues[0xFFFF]);
+            
+            
+            //VALIDATE THE MEMORY IN THE APPROVAL TEST
+            for (var address = 0; address <= 0xFFFF; address++)
             {
-                // Validate the randoms appear in the correct address.
-                for (var address = 0; address <= 0xFFFF; address++)
+                var val = mmu.GetByte((ushort) address);
+
+                var expectedRegion = address switch
                 {
-                    var val = mmu.GetByte((ushort) address);
-                    
-                    // Check the memory region is correct.
-                    MemoryRegion expectedRegion;
-                    switch (address)
-                    {
-                        case var x when (x >= 0 && x <= 0x7FFF):
-                            expectedRegion = MemoryRegion.ROM_BANK;
-                            break;
-                        case var x when (x >= 0x8000 && x <= 0x9FFF):
-                            expectedRegion = MemoryRegion.VIDEO_RAM;
-                            break;
-                        case var x when (x >= 0xA000 && x <= 0xBFFF):
-                            expectedRegion = MemoryRegion.EXTERNAL_RAM;
-                            break;
-                        case var x when (x >= 0xC000 && x <= 0xDFFF):
-                            expectedRegion = MemoryRegion.WORK_RAM;
-                            break;
-                        case var x when (x >= 0xE000 && x <= 0xFDFF):
-                            expectedRegion = MemoryRegion.ECHO_RAM;
-                            break;
-                        case var x when (x >= 0xFE00 && x <= 0xFE9F):
-                            expectedRegion = MemoryRegion.SPRITE_ATTRIBUTE_TABLE;
-                            break;
-                        case var x when (x >= 0xFEA0 && x <= 0xFEFF):
-                            expectedRegion = MemoryRegion.UNUSED;
-                            break;
-                        case var x when (x >= 0xFF00 && x <= 0xFF7F):
-                            expectedRegion = MemoryRegion.IO_REGISTERS;
-                            break;
-                        case var x when (x >= 0xFF80 && x <= 0xFFFE):
-                            expectedRegion = MemoryRegion.HIGH_RAM;
-                            break;
-                        case var x when (x == 0xFFFF):
-                            expectedRegion = MemoryRegion.INTERRUPT_FLAG;
-                            break;
-                        default:
-                            throw new Exception($"Address 0x{address:X} not found.");
-                    }
-                    
-                    output.Append(
-                        $"{$"0x{address:X4}",-11}" +
-                        $"{$"{expectedValues[address]}",-12}" +
-                        $"{$"{val.Data}",-10}" +
-                        $"{$"{Enum.GetName(typeof(MemoryRegion), expectedRegion)}",-26}" +
-                        $"{$"{Enum.GetName(typeof(MemoryRegion), val.Region)}",-26}\n"
-                    );
+                    var x when (x >= 0 && x <= 0x7FFF) => MemoryRegion.ROM_BANK,
+                    var x when (x >= 0x8000 && x <= 0x9FFF) => MemoryRegion.VIDEO_RAM,
+                    var x when (x >= 0xA000 && x <= 0xBFFF) => MemoryRegion.EXTERNAL_RAM,
+                    var x when (x >= 0xC000 && x <= 0xDFFF) => MemoryRegion.WORK_RAM,
+                    var x when (x >= 0xE000 && x <= 0xFDFF) => MemoryRegion.ECHO_RAM,
+                    var x when (x >= 0xFE00 && x <= 0xFE9F) => MemoryRegion.SPRITE_ATTRIBUTE_TABLE,
+                    var x when (x >= 0xFEA0 && x <= 0xFEFF) => MemoryRegion.UNUSED,
+                    var x when (x >= 0xFF00 && x <= 0xFF7F) => MemoryRegion.IO_REGISTERS,
+                    var x when (x >= 0xFF80 && x <= 0xFFFE) => MemoryRegion.HIGH_RAM,
+                    var x when (x == 0xFFFF) => MemoryRegion.INTERRUPT_FLAG,
+                    _ => throw new Exception($"Address 0x{address:X} not found.")
+                };
 
-                    Assert.Equal((ushort) address, val.Address);
-                    Assert.True(val.IsByte);
-                    Assert.Equal(expectedValues[address], val.Data);
-                    Assert.Equal(expectedRegion, val.Region);
-                }
-
+                output.Append(
+                    $"{$"0x{address:X4}",-11}" +
+                    $"{$"{expectedValues[address]}",-12}" +
+                    $"{$"{val.Data}",-10}" +
+                    $"{$"{Enum.GetName(typeof(MemoryRegion), expectedRegion)}",-26}" +
+                    $"{$"{Enum.GetName(typeof(MemoryRegion), val.Region)}",-26}\n"
+                );
             }
-            catch (Exception e)
-            {
-                throw new Exception($"{e.Message}\n\n{output}");
-            }
-
-            Console.WriteLine(output);
+            
+            Approvals.Verify(output);
         }
     }
 }

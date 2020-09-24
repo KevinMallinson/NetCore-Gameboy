@@ -9,6 +9,10 @@
       <ProjectReference Include="..\Gameboy.Interfaces\Gameboy.Interfaces.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="morelinq" Version="3.3.2" />
+    </ItemGroup>
+
       <PropertyGroup>
         <LangVersion>preview</LangVersion>
       </PropertyGroup>

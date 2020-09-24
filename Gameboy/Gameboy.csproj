@@ -11,11 +11,11 @@
 
 
   <ItemGroup>
+    <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="SFML.Net" Version="2.5.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gameboy.Hardware\Gameboy.Hardware.csproj" />
     <ProjectReference Include="..\Gameboy.Interfaces\Gameboy.Interfaces.csproj" />
-    <ProjectReference Include="..\Gameboy.Testsaa\Gameboy.Testsaa.csproj" />
   </ItemGroup>
 </Project>

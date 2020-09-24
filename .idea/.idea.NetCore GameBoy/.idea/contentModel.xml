@@ -25,6 +25,7 @@
         <e p="Gameboy.ApprovalTests.csproj" t="IncludeRecursive" />
         <e p="MMUTests" t="Include">
           <e p="MMUTests.cs" t="Include" />
+          <e p="MMUTests.Memory_ValidateBytes_WithSuccess.approved.txt" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
