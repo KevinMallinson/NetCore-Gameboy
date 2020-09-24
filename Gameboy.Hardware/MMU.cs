@@ -21,19 +21,19 @@ namespace Gameboy.Hardware
         //FF80		FFFE	High RAM(HRAM)																							MMU
         //FFFF		FFFF	Interrupts Enable Register(IE)	
 
-        private byte[] _romBank = new byte[0x8000];
+        private readonly byte[] _romBank = new byte[0x8000];
 
-        private byte[] _externalRam = new byte[0x2000];
+        private readonly byte[] _externalRam = new byte[0x2000];
 
         /* >>Video RAM implemented in GPU<< */
         /* >>External RAM not implemented<< */
-        private byte[] _workRam = new byte[0x2000];
+        private readonly byte[] _workRam = new byte[0x2000];
 
         /* >>Echo RAM maps to work ram << */
         /* >>Sprite Attribute Table implemented in GPU<< */
 
-        private byte[] _ioRegisters = new byte[0x0080];
-        private byte[] _highRam = new byte[0x007F];
+        private readonly byte[] _ioRegisters = new byte[0x0080];
+        private readonly byte[] _highRam = new byte[0x007F];
         private bool _interruptEnableFlag = false;
 
         //The bus will provide access to the cpu, gpu, etc.

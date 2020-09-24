@@ -23,16 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="025b4446-29da-46c7-a8c0-980a498bbe6e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.ApprovalTests/Gameboy.ApprovalTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.ApprovalTests/Gameboy.ApprovalTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.Memory_ValidateBytes_WithSuccess.approved.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.Memory_ValidateBytes_WithSuccess.approved.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.Hardware.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.Hardware.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/IMemoryUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Interfaces/IMemoryUnit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +66,8 @@
         <option value="$PROJECT_DIR$/Gameboy.ApprovalTests/MMU/MMUTests.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Interfaces/IMemoryUnit.cs" />
         <option value="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" />
       </list>
     </option>
@@ -159,7 +155,7 @@
       <workItem from="1600892010716" duration="2077000" />
       <workItem from="1600895150868" duration="1817000" />
       <workItem from="1600913694738" duration="7628000" />
-      <workItem from="1600967652648" duration="3172000" />
+      <workItem from="1600967652648" duration="5453000" />
     </task>
     <servers />
   </component>

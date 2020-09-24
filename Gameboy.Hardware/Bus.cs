@@ -11,9 +11,6 @@ namespace Gameboy.Hardware
             _gpu = gpu;
         }
 
-        public IGraphicsProcessingUnit GetGPU()
-        {
-            return _gpu;
-        }
+        public IGraphicsProcessingUnit GetGPU() => _gpu;
     }
 }

@@ -93,40 +93,24 @@ namespace Gameboy.Hardware
                     7 => A,
                     _ => throw new Exception($"Can only access registers with index 0 through 7. The index attempted to access was: {key}")
                 };
-
             }
 
             set
             {
-                switch (key)
+                Action<byte> assignRegister = key switch
                 {
-                    case 0:
-                        B = (byte)value;
-                        break;
-                    case 1:
-                        C = (byte)value;
-                        break;
-                    case 2:
-                        D = (byte)value;
-                        break;
-                    case 3:
-                        E = (byte)value;
-                        break;
-                    case 4:
-                        H = (byte)value;
-                        break;
-                    case 5:
-                        L = (byte)value;
-                        break;
-                    case 6:
-                        F = (byte)value;
-                        break;
-                    case 7:
-                        A = (byte)value;
-                        break;
-                    default:
-                        throw new Exception($"Can only access registers with index 0 through 7. The index attempted to access was: {key}");
+                    0 => (val) => B = val,
+                    1 => (val) => C = val,
+                    2 => (val) => D = val,
+                    3 => (val) => E = val,
+                    4 => (val) => H = val,
+                    5 => (val) => L = val,
+                    6 => (val) => F = val,
+                    7 => (val) => A = val,
+                    _ => throw new Exception($"Can only access registers with index 0 through 7. The index attempted to access was: {key}")
                 };
+
+                assignRegister((byte) value);
             }
         }
 
