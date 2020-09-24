@@ -8,5 +8,7 @@ namespace Gameboy.Interfaces
         GBMemory GetWord(ushort address);
         void SetByte(ushort address, byte val);
         void SetWord(ushort address, ushort val);
+        string Dump();
+        string HexDump();
     }
 }

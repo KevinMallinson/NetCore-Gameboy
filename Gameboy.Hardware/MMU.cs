@@ -1,5 +1,7 @@
 using System;
+using System.Text;
 using Gameboy.Interfaces;
+using LowLevelDesign.Hexify;
 
 namespace Gameboy.Hardware
 {
@@ -326,6 +328,37 @@ namespace Gameboy.Hardware
             }
 
             throw new Exception($"Unable to find the memory address {addr}");
+        }
+
+        public string Dump()
+        {
+            var headers = $"{"Address",-11}{"Value",-10}{"Region",-26}\n";
+            var output = new StringBuilder(headers);
+            
+            for (var address = 0; address <= 0xFFFF; address++)
+            {
+                var val = GetByte((ushort) address);
+
+                output.Append(
+                    $"{$"0x{address:X4}",-11}" +
+                    $"{$"{val.Data}",-10}" +
+                    $"{$"{Enum.GetName(typeof(MemoryRegion), val.Region)}",-26}\n"
+                );
+            }
+
+            return output.ToString();
+        }
+        
+        public string HexDump()
+        {
+            var bytes = new byte[0xFFFF + 1]; // Range is 0 - 0xFFFF inclusive, hence + 1
+            for (var address = 0; address <= 0xFFFF; address++)
+            {
+                var val = GetByte((ushort) address);
+                bytes[address] = (byte)val.Data;
+            }
+
+            return Hex.PrettyPrint(bytes);
         }
     }
 }
