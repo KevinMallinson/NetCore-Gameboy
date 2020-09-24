@@ -22,7 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="025b4446-29da-46c7-a8c0-980a498bbe6e" name="Default Changelist" comment="" />
+    <list default="true" id="025b4446-29da-46c7-a8c0-980a498bbe6e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,7 +94,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="Inspections-C#" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.Gameboy">
@@ -152,7 +156,7 @@
       <workItem from="1600892010716" duration="2077000" />
       <workItem from="1600895150868" duration="1817000" />
       <workItem from="1600913694738" duration="7628000" />
-      <workItem from="1600967652648" duration="7779000" />
+      <workItem from="1600967652648" duration="10346000" />
     </task>
     <servers />
   </component>
@@ -261,10 +265,18 @@
       <screen x="0" y="23" width="1680" height="956" />
     </state>
     <state x="413" y="236" key="Rider.ProjectTemplateDialog.Size/0.23.1680.956@0.23.1680.956" timestamp="1600896059154" />
-    <state x="314" y="136" key="SettingsEditor" timestamp="1600968058427">
+    <state x="314" y="136" key="SettingsEditor" timestamp="1600978522854">
       <screen x="0" y="23" width="1680" height="956" />
     </state>
-    <state x="314" y="136" key="SettingsEditor/0.23.1680.956@0.23.1680.956" timestamp="1600968058427" />
+    <state x="314" y="136" key="SettingsEditor/0.23.1680.956@0.23.1680.956" timestamp="1600978522854" />
+    <state x="100" y="123" width="1426" height="749" key="VCS.FileHistoryDialog" timestamp="1600978015782">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state x="100" y="123" width="1426" height="749" key="VCS.FileHistoryDialog/0.23.1680.956@0.23.1680.956" timestamp="1600978015782" />
+    <state x="476" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1600978067655">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state x="476" y="229" width="672" height="678" key="search.everywhere.popup/0.23.1680.956@0.23.1680.956" timestamp="1600978067655" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
