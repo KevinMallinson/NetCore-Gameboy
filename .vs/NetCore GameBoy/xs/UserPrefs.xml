@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{73925581-AB84-4F78-99FA-BF6E7AAB678B}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Gameboy.Tests/MMUTests.cs">
+    <Files>
+      <File FileName="Gameboy.Tests/UnitTest1.cs" Line="1" Column="1" />
+      <File FileName="Gameboy.Tests/MMUTests.cs" Line="17" Column="40" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="NetCore GameBoy" expanded="True">
+            <Node name="Gameboy.Tests" expanded="True">
+              <Node name="Dependencies" expanded="True" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="NetCore GameBoy" expanded="True">
+            <Node name="Gameboy.Tests" expanded="True">
+              <Node name="Gameboy.Tests" expanded="True">
+                <Node name="MMUTests" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>Gameboy.Tests/TestProject2.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/kevin/Desktop/Repos/NetCore GameBoy/Gameboy.Tests/MMUTests.cs" relfile="Gameboy.Tests/MMUTests.cs" line="28" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Gameboy PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

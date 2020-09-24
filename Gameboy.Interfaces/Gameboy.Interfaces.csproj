@@ -2,10 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
       <PropertyGroup>
-        <LangVersion>8.0</LangVersion>
+        <LangVersion>preview</LangVersion>
       </PropertyGroup>
 
 </Project>

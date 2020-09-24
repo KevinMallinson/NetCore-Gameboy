@@ -77,7 +77,7 @@ namespace Gameboy.Hardware
             {
                 throw new Exception($"0x{address:X} out of range.");
             }
-
+            
             SetOrGetMemory(address, val);
         }
 
@@ -98,7 +98,7 @@ namespace Gameboy.Hardware
 
         // Note that because addr is a 16 bit number, we need to use a bitmask
         // to fit in between our internal arrays bounds.
-        private GBMemory SetOrGetMemory(ushort addr, byte? val = null)
+        private GBMemory? SetOrGetMemory(ushort addr, byte? val = null)
         {
             //Using memory map at http://gbdev.gg8.se/wiki/articles/Memory_Map
             switch (addr & 0xF000)
@@ -293,7 +293,12 @@ namespace Gameboy.Hardware
                                         }
                                         else
                                         {
-                                            _interruptEnableFlag = val.Value >= 1;
+                                            if (val.Value > 1)
+                                            {
+                                                throw new Exception($"Interrupt Enable Flag can only be 0 or 1. Passed value: {val.Value}");
+                                            }
+                                            
+                                            _interruptEnableFlag = val.Value == 1;
                                             return null;
                                         }
                                     }
