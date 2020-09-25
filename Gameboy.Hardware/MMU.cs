@@ -6,7 +6,7 @@ using LowLevelDesign.Hexify;
 //Using memory map at http://gbdev.gg8.se/wiki/articles/Memory_Map
 namespace Gameboy.Hardware
 {
-    public class MMU : IMemoryUnit
+    public class MMU : IMemoryManagementUnit
     {
         //Start		End		Description						Notes																	//Implementation
         //0000		3FFF	16KB ROM bank 00				From cartridge, fixed bank												MMU
@@ -22,6 +22,9 @@ namespace Gameboy.Hardware
         //FF80		FFFE	High RAM(HRAM)																							MMU
         //FFFF		FFFF	Interrupts Enable Register(IE)	
 
+        private readonly ICentralProcessingUnit _cpu;
+        private readonly IGraphicsProcessingUnit _gpu;
+        
         private readonly byte[] _romBank = new byte[0x8000];
 
         private readonly byte[] _externalRam = new byte[0x2000];
@@ -37,12 +40,10 @@ namespace Gameboy.Hardware
         private readonly byte[] _highRam = new byte[0x007F];
         private bool _interruptEnableFlag;
 
-        //The bus will provide access to the cpu, gpu, etc.
-        private readonly IHardwareBus _bus;
-
-        public MMU(IHardwareBus bus)
+        public MMU(ICentralProcessingUnit cpu, IGraphicsProcessingUnit gpu)
         {
-            _bus = bus;
+            _cpu = cpu;
+            _gpu = gpu;
         }
 
         public GBMemory GetByte(ushort address)
@@ -171,8 +172,8 @@ namespace Gameboy.Hardware
         private void SetROMBank(ushort addr, byte val) => _romBank[addr] = val;
         private GBMemory GetROMBank(ushort addr) => new GBMemory(MemoryRegion.ROM_BANK, _romBank[addr], addr);
         
-        private void SetVRAM(ushort addr, byte val) => _bus.GetGPU().SetByte(addr, val, MemoryRegion.VIDEO_RAM);
-        private GBMemory GetVRAM(ushort addr) => _bus.GetGPU().GetByte(addr, MemoryRegion.VIDEO_RAM);
+        private void SetVRAM(ushort addr, byte val) => _gpu.SetByte(addr, val, MemoryRegion.VIDEO_RAM);
+        private GBMemory GetVRAM(ushort addr) => _gpu.GetByte(addr, MemoryRegion.VIDEO_RAM);
 
         private void SetExternalRAM(ushort addr, byte val) => _externalRam[addr & 0x1FFF] = val;
         private GBMemory GetExternalRAM(ushort addr) => new GBMemory(MemoryRegion.EXTERNAL_RAM, _externalRam[addr & 0x1FFF], addr);
@@ -183,8 +184,8 @@ namespace Gameboy.Hardware
         private void SetEchoRAM(ushort addr, byte val) => _workRam[addr & 0x1FFF] = val;
         private GBMemory GetEchoRAM(ushort addr) => new GBMemory(MemoryRegion.ECHO_RAM, _workRam[addr & 0x1FFF], addr);
 
-        private void SetSpriteAttributeTable(ushort addr, byte val) => _bus.GetGPU().SetByte(addr, val, MemoryRegion.SPRITE_ATTRIBUTE_TABLE);
-        private GBMemory GetSpriteAttributeTable(ushort addr) => _bus.GetGPU().GetByte(addr, MemoryRegion.SPRITE_ATTRIBUTE_TABLE);
+        private void SetSpriteAttributeTable(ushort addr, byte val) => _gpu.SetByte(addr, val, MemoryRegion.SPRITE_ATTRIBUTE_TABLE);
+        private GBMemory GetSpriteAttributeTable(ushort addr) => _gpu.GetByte(addr, MemoryRegion.SPRITE_ATTRIBUTE_TABLE);
         
         private void SetUnusedAddressSpace(ushort addr, byte val) { }
         private GBMemory GetUnusedAddressSpace(ushort addr) => new GBMemory(MemoryRegion.UNUSED, 0, addr);

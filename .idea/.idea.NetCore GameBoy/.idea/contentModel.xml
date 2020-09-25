@@ -36,10 +36,23 @@
           </e>
         </e>
       </e>
+      <e p="Gameboy.Extensions" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Gameboy.Extensions.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Gameboy.Extensions.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ushortExtensions.cs" t="Include" />
+      </e>
       <e p="Gameboy.Hardware" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Bus.cs" t="Include" />
         <e p="CPU.cs" t="Include" />
+        <e p="Gameboy.cs" t="Include" />
         <e p="Gameboy.Hardware.csproj" t="IncludeRecursive" />
         <e p="GPU.cs" t="Include" />
         <e p="MMU.cs" t="Include" />
@@ -61,13 +74,18 @@
             </e>
           </e>
         </e>
+        <e p="OpcodeTests" t="Include">
+          <e p="OpCodeTests.cs" t="Include" />
+        </e>
       </e>
       <e p="Gameboy.Interfaces" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="ExecutedOpcode.cs" t="Include" />
         <e p="Gameboy.Interfaces.csproj" t="IncludeRecursive" />
+        <e p="ICentralProcessingUnit.cs" t="Include" />
         <e p="IGraphicsProcessingUnit.cs" t="Include" />
-        <e p="IHardwareBus.cs" t="Include" />
-        <e p="IMemoryUnit.cs" t="Include" />
+        <e p="IMemoryManagementUnit.cs" t="Include" />
+        <e p="IROMReader.cs" t="Include" />
         <e p="Memory.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -79,6 +97,9 @@
       </e>
       <e p="Gameboy.UnitTests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="CPUTests" t="Include">
+          <e p="CPUTests.cs" t="Include" />
+        </e>
         <e p="Gameboy.UnitTests.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

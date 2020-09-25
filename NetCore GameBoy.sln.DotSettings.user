@@ -1,7 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e4dfcca0_002D801f_002D403f_002Dbab3_002D768d7e6e74ec/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="MMU_ValidateHumanReadableDump" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=79e44e05_002D8adf_002D402a_002Daf01_002D081f7003b82f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="LD" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::9ED1E240-A7DE-4650-9543-50BB8CE478F6::.NETCoreApp,Version=v3.1::Gameboy.ApprovalTests.MMUTests.MMUTests.MMU_ValidateHumanReadableDump&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::9ED1E240-A7DE-4650-9543-50BB8CE478F6::.NETCoreApp,Version=v3.1::Gameboy.ApprovalTests.MMUTests.MMUTests.MMU_ValidateHexDump&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F::.NETCoreApp,Version=v3.1::Gameboy.IntegrationTests.OpcodeTests.OpcodeTests.LD&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

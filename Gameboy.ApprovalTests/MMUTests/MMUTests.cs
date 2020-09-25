@@ -3,6 +3,7 @@ using ApprovalTests;
 using ApprovalTests.Reporters;
 using Gameboy.Hardware;
 using Gameboy.Interfaces;
+using Moq;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -46,11 +47,12 @@ namespace Gameboy.ApprovalTests.MMUTests
             Approvals.Verify(mmu.HexDump());
         }
 
-        private static IMemoryUnit FillMMU()
+        private static IMemoryManagementUnit FillMMU()
         {
+            var cpu = new Mock<CPU>();
             var gpu = new GPU();
-            var bus = new Bus(gpu);
-            IMemoryUnit mmu = new MMU(bus);
+            var mmu = new MMU(cpu.Object, gpu);
+            Bus.Init(gpu, cpu.Object, mmu);
             var expectedValues = new byte[0xFFFF + 1];
 
             var i = 0;

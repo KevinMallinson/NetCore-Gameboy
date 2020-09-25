@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Gameboy.Extensions\Gameboy.Extensions.csproj" />
       <ProjectReference Include="..\Gameboy.Interfaces\Gameboy.Interfaces.csproj" />
     </ItemGroup>
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Gameboy
+namespace Gameboy.Main
 {
     class Program
     {

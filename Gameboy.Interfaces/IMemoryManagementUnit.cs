@@ -2,7 +2,7 @@
 
 namespace Gameboy.Interfaces
 {
-    public interface IMemoryUnit
+    public interface IMemoryManagementUnit
     {
         GBMemory GetByte(ushort address);
         GBMemory GetWord(ushort address);

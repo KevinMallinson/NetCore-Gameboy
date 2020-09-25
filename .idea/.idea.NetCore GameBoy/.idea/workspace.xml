@@ -23,8 +23,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="025b4446-29da-46c7-a8c0-980a498bbe6e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gameboy.IntegrationTests/OpcodeTests/OpCodeTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gameboy.Interfaces/ExecutedOpcode.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gameboy.Interfaces/ICentralProcessingUnit.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gameboy.Interfaces/IROMReader.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gameboy.UnitTests/CPUTests/CPUTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.ApprovalTests/Gameboy.ApprovalTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.ApprovalTests/Gameboy.ApprovalTests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.Hardware.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.Hardware.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.IntegrationTests/Gameboy.IntegrationTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.IntegrationTests/Gameboy.IntegrationTests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/IHardwareBus.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/IMemoryUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Interfaces/IMemoryManagementUnit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.UnitTests/Gameboy.UnitTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.UnitTests/Gameboy.UnitTests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy/Gameboy.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy/Gameboy.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +63,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Gameboy.Interfaces/IMemoryUnit.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/cc/4877d99a/ExecutionTimer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EB067793-5C3F-4219-AEF1-3AB117C20649/3A4/List.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EB067793-5C3F-4219-AEF1-3AB117C20649/94/e48d340e/IEnumerator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Gameboy.Interfaces/IMemoryManagementUnit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Gameboy.Hardware/GPU.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EB067793-5C3F-4219-AEF1-3AB117C20649/2E1/Opcode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/d9/b0109e6d/TestInvoker`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EB067793-5C3F-4219-AEF1-3AB117C20649/70/EventArgs.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -64,23 +90,42 @@
         <option value="$PROJECT_DIR$/Gameboy.Tests/TestProject2.csproj" />
         <option value="$PROJECT_DIR$/Gameboy.ApprovalTests/MMU/MMUTests.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Interfaces/IMemoryUnit.cs" />
-        <option value="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" />
-        <option value="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" />
         <option value="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.MMU_ValidateHumanReadableDump.approved.txt" />
+        <option value="$PROJECT_DIR$/Gameboy.UnitTests/CPUTests.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.UnitTests/CPU/CPUTests.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.IntegrationTests/SystemTests.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.IntegrationTests/OpCodeTests.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Interfaces/IROMReader.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" />
+        <option value="$PROJECT_DIR$/Gameboy/Program.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Interfaces/IHardwareBus.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.UnitTests/CPUTests/CPUTests.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Interfaces/ICentralProcessingUnit.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Interfaces/Memory.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Extensions/Class1.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Extensions/ushortExtensions.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Extensions/UshortExtensions.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Interfaces/ExecutedOpcode.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.IntegrationTests/OpcodeTests/OpCodeTests.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1YsCNFh3gF4rDCW3M0BlzaSjIbz" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.35028976" />
-    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30006438" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.35034224" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.29993778" />
     <property name="Rider.SolutionExplorerActivator" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -93,7 +138,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="Inspections-C#" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.Gameboy">
@@ -156,7 +201,9 @@
       <workItem from="1600895150868" duration="1817000" />
       <workItem from="1600913694738" duration="7628000" />
       <workItem from="1600967652648" duration="10709000" />
-      <workItem from="1600991244990" duration="727000" />
+      <workItem from="1600991244990" duration="962000" />
+      <workItem from="1600993333220" duration="5728000" />
+      <workItem from="1601052642933" duration="12868000" />
     </task>
     <servers />
   </component>
@@ -181,102 +228,141 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1584" height="341" key="GridCell.Tab.0.bottom" timestamp="1600979057772">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="492" height="463" key="DebuggerActiveHint" timestamp="1601067774753">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.0.bottom/0.23.1680.956@0.23.1680.956" timestamp="1600979057772" />
-    <state width="1584" height="341" key="GridCell.Tab.0.center" timestamp="1600979057772">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="492" height="463" key="DebuggerActiveHint/0.23.1680.953@0.23.1680.953" timestamp="1601067774753" />
+    <state width="441" height="464" key="DebuggerActiveHint/0.23.1680.956@0.23.1680.956" timestamp="1601056744508" />
+    <state width="1638" height="316" key="GridCell.Tab.0.bottom" timestamp="1601068192565">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.0.center/0.23.1680.956@0.23.1680.956" timestamp="1600979057772" />
-    <state width="1584" height="341" key="GridCell.Tab.0.left" timestamp="1600979057771">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.0.bottom/0.23.1680.953@0.23.1680.953" timestamp="1601068192565" />
+    <state width="1638" height="316" key="GridCell.Tab.0.bottom/0.23.1680.956@0.23.1680.956" timestamp="1601061707627" />
+    <state width="1638" height="316" key="GridCell.Tab.0.center" timestamp="1601068192565">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.0.left/0.23.1680.956@0.23.1680.956" timestamp="1600979057771" />
-    <state width="1584" height="341" key="GridCell.Tab.0.right" timestamp="1600979057772">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.0.center/0.23.1680.953@0.23.1680.953" timestamp="1601068192565" />
+    <state width="1638" height="316" key="GridCell.Tab.0.center/0.23.1680.956@0.23.1680.956" timestamp="1601061707624" />
+    <state width="1638" height="316" key="GridCell.Tab.0.left" timestamp="1601068192565">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.0.right/0.23.1680.956@0.23.1680.956" timestamp="1600979057772" />
-    <state width="1584" height="341" key="GridCell.Tab.1.bottom" timestamp="1600979057773">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.0.left/0.23.1680.953@0.23.1680.953" timestamp="1601068192565" />
+    <state width="1638" height="316" key="GridCell.Tab.0.left/0.23.1680.956@0.23.1680.956" timestamp="1601061707621" />
+    <state width="1638" height="316" key="GridCell.Tab.0.right" timestamp="1601068192565">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.1.bottom/0.23.1680.956@0.23.1680.956" timestamp="1600979057773" />
-    <state width="1584" height="341" key="GridCell.Tab.1.center" timestamp="1600979057772">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.0.right/0.23.1680.953@0.23.1680.953" timestamp="1601068192565" />
+    <state width="1638" height="316" key="GridCell.Tab.0.right/0.23.1680.956@0.23.1680.956" timestamp="1601061707626" />
+    <state width="1638" height="316" key="GridCell.Tab.1.bottom" timestamp="1601068192566">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.1.center/0.23.1680.956@0.23.1680.956" timestamp="1600979057772" />
-    <state width="1584" height="341" key="GridCell.Tab.1.left" timestamp="1600979057772">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.1.bottom/0.23.1680.953@0.23.1680.953" timestamp="1601068192566" />
+    <state width="1638" height="316" key="GridCell.Tab.1.bottom/0.23.1680.956@0.23.1680.956" timestamp="1601061707629" />
+    <state width="1638" height="316" key="GridCell.Tab.1.center" timestamp="1601068192566">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.1.left/0.23.1680.956@0.23.1680.956" timestamp="1600979057772" />
-    <state width="1584" height="341" key="GridCell.Tab.1.right" timestamp="1600979057773">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.1.center/0.23.1680.953@0.23.1680.953" timestamp="1601068192566" />
+    <state width="1638" height="316" key="GridCell.Tab.1.center/0.23.1680.956@0.23.1680.956" timestamp="1601061707628" />
+    <state width="1638" height="316" key="GridCell.Tab.1.left" timestamp="1601068192566">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.1.right/0.23.1680.956@0.23.1680.956" timestamp="1600979057773" />
-    <state width="1584" height="341" key="GridCell.Tab.2.bottom" timestamp="1600979057774">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.1.left/0.23.1680.953@0.23.1680.953" timestamp="1601068192566" />
+    <state width="1638" height="316" key="GridCell.Tab.1.left/0.23.1680.956@0.23.1680.956" timestamp="1601061707627" />
+    <state width="1638" height="316" key="GridCell.Tab.1.right" timestamp="1601068192566">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.2.bottom/0.23.1680.956@0.23.1680.956" timestamp="1600979057774" />
-    <state width="1584" height="341" key="GridCell.Tab.2.center" timestamp="1600979057773">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.1.right/0.23.1680.953@0.23.1680.953" timestamp="1601068192566" />
+    <state width="1638" height="316" key="GridCell.Tab.1.right/0.23.1680.956@0.23.1680.956" timestamp="1601061707628" />
+    <state width="1638" height="316" key="GridCell.Tab.2.bottom" timestamp="1601068192566">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.2.center/0.23.1680.956@0.23.1680.956" timestamp="1600979057773" />
-    <state width="1584" height="341" key="GridCell.Tab.2.left" timestamp="1600979057773">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.2.bottom/0.23.1680.953@0.23.1680.953" timestamp="1601068192566" />
+    <state width="1638" height="316" key="GridCell.Tab.2.bottom/0.23.1680.956@0.23.1680.956" timestamp="1601061707630" />
+    <state width="1638" height="316" key="GridCell.Tab.2.center" timestamp="1601068192566">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.2.left/0.23.1680.956@0.23.1680.956" timestamp="1600979057773" />
-    <state width="1584" height="341" key="GridCell.Tab.2.right" timestamp="1600979057773">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.2.center/0.23.1680.953@0.23.1680.953" timestamp="1601068192566" />
+    <state width="1638" height="316" key="GridCell.Tab.2.center/0.23.1680.956@0.23.1680.956" timestamp="1601061707630" />
+    <state width="1638" height="316" key="GridCell.Tab.2.left" timestamp="1601068192566">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.2.right/0.23.1680.956@0.23.1680.956" timestamp="1600979057773" />
-    <state width="1584" height="341" key="GridCell.Tab.3.bottom" timestamp="1600979057774">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.2.left/0.23.1680.953@0.23.1680.953" timestamp="1601068192566" />
+    <state width="1638" height="316" key="GridCell.Tab.2.left/0.23.1680.956@0.23.1680.956" timestamp="1601061707629" />
+    <state width="1638" height="316" key="GridCell.Tab.2.right" timestamp="1601068192566">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.3.bottom/0.23.1680.956@0.23.1680.956" timestamp="1600979057774" />
-    <state width="1584" height="341" key="GridCell.Tab.3.center" timestamp="1600979057774">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.2.right/0.23.1680.953@0.23.1680.953" timestamp="1601068192566" />
+    <state width="1638" height="316" key="GridCell.Tab.2.right/0.23.1680.956@0.23.1680.956" timestamp="1601061707630" />
+    <state width="1638" height="316" key="GridCell.Tab.3.bottom" timestamp="1601068192567">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.3.center/0.23.1680.956@0.23.1680.956" timestamp="1600979057774" />
-    <state width="1584" height="341" key="GridCell.Tab.3.left" timestamp="1600979057774">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.3.bottom/0.23.1680.953@0.23.1680.953" timestamp="1601068192567" />
+    <state width="1638" height="316" key="GridCell.Tab.3.bottom/0.23.1680.956@0.23.1680.956" timestamp="1601061707631" />
+    <state width="1638" height="316" key="GridCell.Tab.3.center" timestamp="1601068192567">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.3.left/0.23.1680.956@0.23.1680.956" timestamp="1600979057774" />
-    <state width="1584" height="341" key="GridCell.Tab.3.right" timestamp="1600979057774">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.3.center/0.23.1680.953@0.23.1680.953" timestamp="1601068192567" />
+    <state width="1638" height="316" key="GridCell.Tab.3.center/0.23.1680.956@0.23.1680.956" timestamp="1601061707631" />
+    <state width="1638" height="316" key="GridCell.Tab.3.left" timestamp="1601068192567">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.3.right/0.23.1680.956@0.23.1680.956" timestamp="1600979057774" />
-    <state width="1584" height="341" key="GridCell.Tab.4.bottom" timestamp="1600979057775">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.3.left/0.23.1680.953@0.23.1680.953" timestamp="1601068192567" />
+    <state width="1638" height="316" key="GridCell.Tab.3.left/0.23.1680.956@0.23.1680.956" timestamp="1601061707631" />
+    <state width="1638" height="316" key="GridCell.Tab.3.right" timestamp="1601068192567">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.4.bottom/0.23.1680.956@0.23.1680.956" timestamp="1600979057775" />
-    <state width="1584" height="341" key="GridCell.Tab.4.center" timestamp="1600979057775">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.3.right/0.23.1680.953@0.23.1680.953" timestamp="1601068192567" />
+    <state width="1638" height="316" key="GridCell.Tab.3.right/0.23.1680.956@0.23.1680.956" timestamp="1601061707631" />
+    <state width="1638" height="316" key="GridCell.Tab.4.bottom" timestamp="1601068192567">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.4.center/0.23.1680.956@0.23.1680.956" timestamp="1600979057775" />
-    <state width="1584" height="341" key="GridCell.Tab.4.left" timestamp="1600979057774">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.4.bottom/0.23.1680.953@0.23.1680.953" timestamp="1601068192567" />
+    <state width="1638" height="316" key="GridCell.Tab.4.bottom/0.23.1680.956@0.23.1680.956" timestamp="1601061707632" />
+    <state width="1638" height="316" key="GridCell.Tab.4.center" timestamp="1601068192567">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.4.left/0.23.1680.956@0.23.1680.956" timestamp="1600979057774" />
-    <state width="1584" height="341" key="GridCell.Tab.4.right" timestamp="1600979057775">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.4.center/0.23.1680.953@0.23.1680.953" timestamp="1601068192567" />
+    <state width="1638" height="316" key="GridCell.Tab.4.center/0.23.1680.956@0.23.1680.956" timestamp="1601061707632" />
+    <state width="1638" height="316" key="GridCell.Tab.4.left" timestamp="1601068192567">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1584" height="341" key="GridCell.Tab.4.right/0.23.1680.956@0.23.1680.956" timestamp="1600979057775" />
-    <state x="413" y="236" key="Rider.ProjectTemplateDialog.Size" timestamp="1600896059154">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state width="1638" height="316" key="GridCell.Tab.4.left/0.23.1680.953@0.23.1680.953" timestamp="1601068192567" />
+    <state width="1638" height="316" key="GridCell.Tab.4.left/0.23.1680.956@0.23.1680.956" timestamp="1601061707632" />
+    <state width="1638" height="316" key="GridCell.Tab.4.right" timestamp="1601068192567">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
+    <state width="1638" height="316" key="GridCell.Tab.4.right/0.23.1680.953@0.23.1680.953" timestamp="1601068192567" />
+    <state width="1638" height="316" key="GridCell.Tab.4.right/0.23.1680.956@0.23.1680.956" timestamp="1601061707632" />
+    <state x="413" y="235" key="Rider.ProjectTemplateDialog.Size" timestamp="1601065296687">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="413" y="235" key="Rider.ProjectTemplateDialog.Size/0.23.1680.953@0.23.1680.953" timestamp="1601065296687" />
     <state x="413" y="236" key="Rider.ProjectTemplateDialog.Size/0.23.1680.956@0.23.1680.956" timestamp="1600896059154" />
-    <state x="314" y="136" key="SettingsEditor" timestamp="1600978522854">
+    <state x="625" y="178" key="RiderGenerateDialog" timestamp="1601055497529">
       <screen x="0" y="23" width="1680" height="956" />
     </state>
-    <state x="314" y="136" key="SettingsEditor/0.23.1680.956@0.23.1680.956" timestamp="1600978522854" />
-    <state x="100" y="123" width="1426" height="749" key="VCS.FileHistoryDialog" timestamp="1600978015782">
+    <state x="625" y="178" key="RiderGenerateDialog/0.23.1680.956@0.23.1680.956" timestamp="1601055497529" />
+    <state x="314" y="136" key="SettingsEditor" timestamp="1601058637154">
       <screen x="0" y="23" width="1680" height="956" />
     </state>
-    <state x="100" y="123" width="1426" height="749" key="VCS.FileHistoryDialog/0.23.1680.956@0.23.1680.956" timestamp="1600978015782" />
-    <state x="476" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1600978067655">
+    <state x="314" y="136" key="SettingsEditor/0.23.1680.956@0.23.1680.956" timestamp="1601058637154" />
+    <state x="100" y="123" width="1426" height="749" key="VCS.FileHistoryDialog" timestamp="1601058271784">
       <screen x="0" y="23" width="1680" height="956" />
     </state>
-    <state x="476" y="229" width="672" height="678" key="search.everywhere.popup/0.23.1680.956@0.23.1680.956" timestamp="1600978067655" />
+    <state x="100" y="123" width="1426" height="749" key="VCS.FileHistoryDialog/0.23.1680.956@0.23.1680.956" timestamp="1601058271784" />
+    <state x="441" y="130" width="743" height="735" key="find.popup" timestamp="1601009114153">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state x="441" y="130" width="743" height="735" key="find.popup/0.23.1680.956@0.23.1680.956" timestamp="1601009114153" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1601008916035">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.23.1680.956@0.23.1680.956" timestamp="1601008916035" />
+    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup" timestamp="1601067316402">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup/0.23.1680.953@0.23.1680.953" timestamp="1601067316402" />
+    <state x="476" y="229" width="672" height="678" key="search.everywhere.popup/0.23.1680.956@0.23.1680.956" timestamp="1601062595152" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -286,19 +372,6 @@
           <line>144</line>
           <properties documentPath="$PROJECT_DIR$/Gameboy.Tests/MMUTests.cs" initialLine="144" />
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Gameboy.Hardware/CPU.cs</url>
-          <line>124</line>
-          <properties documentPath="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" initialLine="123">
-            <startOffsets>
-              <option value="3190" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3213" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

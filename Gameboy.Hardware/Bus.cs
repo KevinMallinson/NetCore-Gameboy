@@ -1,16 +1,28 @@
+using System;
 using Gameboy.Interfaces;
 
 namespace Gameboy.Hardware
 {
-    public class Bus : IHardwareBus
+    public static class Bus
     {
-        private readonly IGraphicsProcessingUnit _gpu;
+        public static IGraphicsProcessingUnit GPU { get; private set; }
+        public static ICentralProcessingUnit CPU { get; private set; }
+        public static IMemoryManagementUnit MMU { get; private set; }
 
-        public Bus(IGraphicsProcessingUnit gpu)
+        public static void Init(IGraphicsProcessingUnit gpu, ICentralProcessingUnit cpu, IMemoryManagementUnit mmu)
         {
-            _gpu = gpu;
-        }
+            if (GPU != null)
+                throw new Exception("GPU is already initialized.");
 
-        public IGraphicsProcessingUnit GetGPU() => _gpu;
+            if (CPU != null)
+                throw new Exception("CPU is already initialized.");
+            
+            if (MMU != null)
+                throw new Exception("MMU is already initialized.");
+            
+            GPU = gpu;
+            CPU = cpu;
+            MMU = mmu;
+        }
     }
 }

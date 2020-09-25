@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameboy.ApprovalTests", "Ga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameboy.IntegrationTests", "Gameboy.IntegrationTests\Gameboy.IntegrationTests.csproj", "{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameboy.Extensions", "Gameboy.Extensions\Gameboy.Extensions.csproj", "{047B1770-11E5-48D1-951D-57BD06B020FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,5 +102,17 @@ Global
 		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Release|x64.Build.0 = Release|Any CPU
 		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Release|x86.ActiveCfg = Release|Any CPU
 		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Release|x86.Build.0 = Release|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Debug|x64.Build.0 = Debug|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Debug|x86.Build.0 = Debug|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Release|x64.ActiveCfg = Release|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Release|x64.Build.0 = Release|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Release|x86.ActiveCfg = Release|Any CPU
+		{047B1770-11E5-48D1-951D-57BD06B020FC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

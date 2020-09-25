@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Gameboy.Extensions;
+using Gameboy.Interfaces;
 
 namespace Gameboy.Hardware
 {
     //B, C, D, E, H, L, F, A
-    public enum Registers
+    public enum Register
     {
         B = 0,
         C = 1,
@@ -15,13 +19,13 @@ namespace Gameboy.Hardware
         A = 7
     };
 
-    public class CPU
+    public class CPU : ICentralProcessingUnit
     {
         
         private byte _f;
         private ushort _pc;
         private ushort _sp;
-
+        private ExecutedOpcode? _lastExecutedOpcode;
         
         public byte A { get; set; }
         public byte B { get; set; }
@@ -83,20 +87,20 @@ namespace Gameboy.Hardware
         /// B, C, D, E, H, L, F, A
         /// </summary>
         /// <param name="key">Register Index</param>
-        public int this[int key]
+        public int this[Register key]
         {
             get
             {
                 return key switch
                 {
-                    0 => B,
-                    1 => C,
-                    2 => D,
-                    3 => E,
-                    4 => H,
-                    5 => L,
-                    6 => F,
-                    7 => A,
+                    Register.B => B,
+                    Register.C => C,
+                    Register.D => D,
+                    Register.E => E,
+                    Register.H => H,
+                    Register.L => L,
+                    Register.F => F,
+                    Register.A => A,
                     _ => throw new Exception($"Can only access registers with index 0 through 7. The index attempted to access was: {key}")
                 };
             }
@@ -105,14 +109,14 @@ namespace Gameboy.Hardware
             {
                 Action<byte> assignRegister = key switch
                 {
-                    0 => (val) => B = val,
-                    1 => (val) => C = val,
-                    2 => (val) => D = val,
-                    3 => (val) => E = val,
-                    4 => (val) => H = val,
-                    5 => (val) => L = val,
-                    6 => (val) => F = val,
-                    7 => (val) => A = val,
+                    Register.B => (val) => B = val,
+                    Register.C => (val) => C = val,
+                    Register.D => (val) => D = val,
+                    Register.E => (val) => E = val,
+                    Register.H => (val) => H = val,
+                    Register.L => (val) => L = val,
+                    Register.F => (val) => F = val,
+                    Register.A => (val) => A = val,
                     _ => throw new Exception($"Can only access registers with index 0 through 7. The index attempted to access was: {key}")
                 };
 
@@ -120,16 +124,43 @@ namespace Gameboy.Hardware
             }
         }
         
-        public int LD(int dest, int src)
+        public ExecutedOpcode LD(Register dest, Register src)
         {
             this[dest] = this[src];
-            return 4;
+            _pc++;
+            
+            var opcode = $"LD {dest.ToString()}, {src.ToString()}";
+            return new ExecutedOpcode(4, opcode, _pc, _sp, OpcodeType.LOAD);
         }
         
-        public void Cycle()
+        public ExecutedOpcode LD(Register dest, GBMemory memory)
         {
-            int opcode = 0;
+            if (memory.IsByte)
+            {
+                this[dest] = memory.Data;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
             
+            _pc += 2;
+            
+            var opcode = $"LD {dest.ToString()}, {memory.Data.ToLittleEndian()}";
+            return new ExecutedOpcode(8, opcode, _pc, _sp, OpcodeType.LOAD);
+        }
+
+        public ExecutedOpcode JMP(GBMemory memory)
+        {
+            _pc = memory.Data;
+            
+            var opcode = $"JMP {memory.Data.ToLittleEndian()}";
+            return new ExecutedOpcode(12, opcode, _pc, _sp, OpcodeType.JUMP);
+        }
+        
+        public ExecutedOpcode Step()
+        {
+            var opcode = Bus.MMU.GetByte(_pc).Data;
             switch (opcode)
             {
                 //------------LD INSTRUCTIONS FOR REGISTERS (NON PAIR), AND NON MEMORY (HL)------------//
@@ -147,12 +178,31 @@ namespace Gameboy.Hardware
                 case 0x68: case 0x69: case 0x6a: case 0x6b: case 0x6c: case 0x6d: case 0x6f: // ld l,reg
                 case 0x78: case 0x79: case 0x7a: case 0x7b: case 0x7c: case 0x7d: case 0x7f: // ld a,reg
                 {
-                    var dest = opcode >> 3 & 0b00000111;
-                    var src = opcode & 0b00000111;
-                    LD(dest, src);
+                    var dest = (Register)(opcode >> 3 & 0b00000111);
+                    var src = (Register)(opcode & 0b00000111);
+                    _lastExecutedOpcode = LD(dest, src);
                     break;
                 }
-            }           
+                case 0x06:
+                {
+                    var data = Bus.MMU.GetByte((ushort)(_pc + 1));
+                    _lastExecutedOpcode = LD( Register.B, data);
+                    break;
+                }
+                case 0xC3:
+                {
+                    var data = Bus.MMU.GetWord((ushort)(_pc + 1));
+                    _lastExecutedOpcode = JMP(data);
+                    break;
+                }
+            }
+            
+            return _lastExecutedOpcode;
+        }
+
+        public void Reset()
+        {
+            _pc = 0x100;
         }
     }
 }
