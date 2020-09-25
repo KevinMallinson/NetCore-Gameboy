@@ -17,6 +17,12 @@ namespace Gameboy.Hardware
 
     public class CPU
     {
+        
+        private byte _f;
+        private ushort _pc;
+        private ushort _sp;
+
+        
         public byte A { get; set; }
         public byte B { get; set; }
         public byte C { get; set; }
@@ -113,9 +119,40 @@ namespace Gameboy.Hardware
                 assignRegister((byte) value);
             }
         }
-
-        private byte _f;
-        private ushort _pc;
-        private ushort _sp;
+        
+        public int LD(int dest, int src)
+        {
+            this[dest] = this[src];
+            return 4;
+        }
+        
+        public void Cycle()
+        {
+            int opcode = 0;
+            
+            switch (opcode)
+            {
+                //------------LD INSTRUCTIONS FOR REGISTERS (NON PAIR), AND NON MEMORY (HL)------------//
+                //LD instructions from 0x40 to 0x7F
+                //Excluding 0x46, 0x56, 0x66                                due to --> LD reg, (HL)
+                //Excluding 0x4E, 0x5E, 0x6E, 0x7E                          due to --> LD reg, (HL)
+                //Excluding 0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x77        due to --> LD (HL), reg
+                //Excluding 0x76 because it's a HALT instruction.
+                //------------------------------------------------------------------------------------//
+                case 0x40: case 0x41: case 0x42: case 0x43: case 0x44: case 0x45: case 0x47: // ld b,reg
+                case 0x48: case 0x49: case 0x4a: case 0x4b: case 0x4c: case 0x4d: case 0x4f: // ld c,reg
+                case 0x50: case 0x51: case 0x52: case 0x53: case 0x54: case 0x55: case 0x57: // ld d,reg
+                case 0x58: case 0x59: case 0x5a: case 0x5b: case 0x5c: case 0x5d: case 0x5f: // ld e,reg
+                case 0x60: case 0x61: case 0x62: case 0x63: case 0x64: case 0x65: case 0x67: // ld h,reg
+                case 0x68: case 0x69: case 0x6a: case 0x6b: case 0x6c: case 0x6d: case 0x6f: // ld l,reg
+                case 0x78: case 0x79: case 0x7a: case 0x7b: case 0x7c: case 0x7d: case 0x7f: // ld a,reg
+                {
+                    var dest = opcode >> 3 & 0b00000111;
+                    var src = opcode & 0b00000111;
+                    LD(dest, src);
+                    break;
+                }
+            }           
+        }
     }
 }

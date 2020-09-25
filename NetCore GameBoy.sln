@@ -9,9 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameboy.Hardware", "Gameboy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameboy.Interfaces", "Gameboy.Interfaces\Gameboy.Interfaces.csproj", "{7884FDA2-9361-4546-A19A-7D6AF134108A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameboy.Tests", "Gameboy.Tests\Gameboy.Tests.csproj", "{58FC9B9D-BDBC-44D5-9C78-D290ABEAA4E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameboy.UnitTests", "Gameboy.UnitTests\Gameboy.UnitTests.csproj", "{58FC9B9D-BDBC-44D5-9C78-D290ABEAA4E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameboy.ApprovalTests", "Gameboy.ApprovalTests\Gameboy.ApprovalTests.csproj", "{9ED1E240-A7DE-4650-9543-50BB8CE478F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gameboy.IntegrationTests", "Gameboy.IntegrationTests\Gameboy.IntegrationTests.csproj", "{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,5 +88,17 @@ Global
 		{9ED1E240-A7DE-4650-9543-50BB8CE478F6}.Release|x64.Build.0 = Release|Any CPU
 		{9ED1E240-A7DE-4650-9543-50BB8CE478F6}.Release|x86.ActiveCfg = Release|Any CPU
 		{9ED1E240-A7DE-4650-9543-50BB8CE478F6}.Release|x86.Build.0 = Release|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Debug|x64.Build.0 = Debug|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Debug|x86.Build.0 = Debug|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Release|x64.ActiveCfg = Release|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Release|x64.Build.0 = Release|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Release|x86.ActiveCfg = Release|Any CPU
+		{900DFA7B-7F06-4BFB-A9C5-3A1B4811E11F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
