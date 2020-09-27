@@ -52,6 +52,7 @@ namespace Gameboy.ApprovalTests.MMUTests
             var cpu = new Mock<CPU>();
             var gpu = new GPU();
             var mmu = new MMU(cpu.Object, gpu);
+            Bus.Reset();
             Bus.Init(gpu, cpu.Object, mmu);
             var expectedValues = new byte[0xFFFF + 1];
 

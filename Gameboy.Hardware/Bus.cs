@@ -24,5 +24,12 @@ namespace Gameboy.Hardware
             CPU = cpu;
             MMU = mmu;
         }
+
+        public static void Reset()
+        {
+            GPU = null;
+            CPU = null;
+            MMU = null;
+        }
     }
 }

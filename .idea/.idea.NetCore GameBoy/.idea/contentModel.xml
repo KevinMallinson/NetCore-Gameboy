@@ -63,6 +63,9 @@
             </e>
           </e>
         </e>
+        <e p="Register.cs" t="Include" />
+        <e p="RegisterDictionary.cs" t="Include" />
+        <e p="RegisterId.cs" t="Include" />
       </e>
       <e p="Gameboy.IntegrationTests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
