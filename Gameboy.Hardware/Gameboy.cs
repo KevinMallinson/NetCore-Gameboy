@@ -24,7 +24,7 @@ namespace Gameboy.Hardware
         public void LoadROM(string source)
         {
             _rom = _romReader.ReadRom(source);
-            _rom.ForEach((x, i) => Bus.MMU.SetByte((ushort)i, x));
+            _rom.ForEach((x, i) => Bus.MMU.SetByte(i, x));
         }
 
         public void Cycle()

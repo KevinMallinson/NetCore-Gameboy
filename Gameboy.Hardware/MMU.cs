@@ -25,19 +25,19 @@ namespace Gameboy.Hardware
         private readonly ICentralProcessingUnit _cpu;
         private readonly IGraphicsProcessingUnit _gpu;
         
-        private readonly byte[] _romBank = new byte[0x8000];
+        private readonly int[] _romBank = new int[0x8000];
 
-        private readonly byte[] _externalRam = new byte[0x2000];
+        private readonly int[] _externalRam = new int[0x2000];
 
         /* >>Video RAM implemented in GPU<< */
         /* >>External RAM not implemented<< */
-        private readonly byte[] _workRam = new byte[0x2000];
+        private readonly int[] _workRam = new int[0x2000];
 
         /* >>Echo RAM maps to work ram << */
         /* >>Sprite Attribute Table implemented in GPU<< */
 
-        private readonly byte[] _ioRegisters = new byte[0x0080];
-        private readonly byte[] _highRam = new byte[0x007F];
+        private readonly int[] _ioRegisters = new int[0x0080];
+        private readonly int[] _highRam = new int[0x007F];
         private bool _interruptEnableFlag;
 
         public MMU(ICentralProcessingUnit cpu, IGraphicsProcessingUnit gpu)
@@ -46,7 +46,7 @@ namespace Gameboy.Hardware
             _gpu = gpu;
         }
 
-        public GBMemory GetByte(ushort address)
+        public GBMemory GetByte(int address)
         {
             if (address > 0xFFFF)
             {
@@ -56,7 +56,7 @@ namespace Gameboy.Hardware
             return GetMemory(address);
         }
 
-        public GBMemory GetWord(ushort address)
+        public GBMemory GetWord(int address)
         {
             if (address > 0xFFFF)
             {
@@ -64,7 +64,7 @@ namespace Gameboy.Hardware
             }
 
             //higher address contains most significant byte
-            var msb = GetMemory((ushort)(address + 1));
+            var msb = GetMemory(address + 1);
             var lsb = GetMemory(address);
 
             if (msb.Region != lsb.Region)
@@ -72,10 +72,10 @@ namespace Gameboy.Hardware
                 throw new Exception($"The MSB had the region of {msb.Region} but the LSB had {lsb.Region}");
             }
 
-            return new GBMemory(msb.Region, (ushort)(msb.Data << 8 | lsb.Data), address);
+            return new GBMemory(msb.Region, msb.Data << 8 | lsb.Data, address);
         }
 
-        public void SetByte(ushort address, byte val)
+        public void SetByte(int address, int val)
         {
             if (address > 0xFFFF)
             {
@@ -85,34 +85,34 @@ namespace Gameboy.Hardware
             SetMemory(address, val);
         }
 
-        public void SetWord(ushort address, ushort val)
+        public void SetWord(int address, int val)
         {
             if (address > 0xFFFF)
             {
                 throw new Exception($"0x{address:X} out of range.");
             }
 
-            var msb = (byte)(val >> 8);
-            var lsb = (byte)(val & 0x00FF);
+            var msb = val >> 8;
+            var lsb = val & 0x00FF;
 
             // little endian! lsb in lower address.
             SetMemory(address, lsb);
-            SetMemory((ushort)(address + 1), msb);
+            SetMemory(address + 1, msb);
         }
         
-        private void SetMemory(ushort addr, byte val)
+        private void SetMemory(int addr, int val)
         {
-            Action<ushort, byte> setMemory = addr switch
+            Action<int, int> setMemory = addr switch
             {
                 { } when addr <= 0x7FFF => SetROMBank,
-                { } when addr >= 0x8000 && addr <= 0x9FFF => SetVRAM,
-                { } when addr >= 0xA000 && addr <= 0xBFFF => SetExternalRAM,
-                { } when addr >= 0xC000 && addr <= 0xDFFF => SetWorkRAM,
-                { } when addr >= 0xE000 && addr <= 0xFDFF => SetEchoRAM,
-                { } when addr >= 0xFE00 && addr <= 0xFE9F => SetSpriteAttributeTable,
-                { } when addr >= 0xFEA0 && addr <= 0xFEFF => SetUnusedAddressSpace,
-                { } when addr >= 0xFF00 && addr <= 0xFF7F => SetIORegisters,
-                { } when addr >= 0xFF80 && addr <= 0xFFFE => SetHighRAM,
+                { } when addr <= 0x9FFF => SetVRAM,
+                { } when addr <= 0xBFFF => SetExternalRAM,
+                { } when addr <= 0xDFFF => SetWorkRAM,
+                { } when addr <= 0xFDFF => SetEchoRAM,
+                { } when addr <= 0xFE9F => SetSpriteAttributeTable,
+                { } when addr <= 0xFEFF => SetUnusedAddressSpace,
+                { } when addr <= 0xFF7F => SetIORegisters,
+                { } when addr <= 0xFFFE => SetHighRAM,
                 { } when addr == 0xFFFF => SetInterruptEnableFlag,
                 _ => throw new Exception($"A catastrophic error has occured in the MMU. Address: {addr}")
             };
@@ -120,19 +120,19 @@ namespace Gameboy.Hardware
             setMemory(addr, val);
         }
         
-        private GBMemory GetMemory(ushort addr)
+        private GBMemory GetMemory(int addr)
         {
             return addr switch
             {
                 { } when addr <= 0x7FFF => GetROMBank(addr),
-                { } when addr >= 0x8000 && addr <= 0x9FFF => GetVRAM(addr),
-                { } when addr >= 0xA000 && addr <= 0xBFFF => GetExternalRAM(addr),
-                { } when addr >= 0xC000 && addr <= 0xDFFF => GetWorkRAM(addr),
-                { } when addr >= 0xE000 && addr <= 0xFDFF => GetEchoRAM(addr),
-                { } when addr >= 0xFE00 && addr <= 0xFE9F => GetSpriteAttributeTable(addr),
-                { } when addr >= 0xFEA0 && addr <= 0xFEFF => GetUnusedAddressSpace(addr),
-                { } when addr >= 0xFF00 && addr <= 0xFF7F => GetIORegisters(addr),
-                { } when addr >= 0xFF80 && addr <= 0xFFFE => GetHighRAM(addr),
+                { } when addr <= 0x9FFF => GetVRAM(addr),
+                { } when addr <= 0xBFFF => GetExternalRAM(addr),
+                { } when addr <= 0xDFFF => GetWorkRAM(addr),
+                { } when addr <= 0xFDFF => GetEchoRAM(addr),
+                { } when addr <= 0xFE9F => GetSpriteAttributeTable(addr),
+                { } when addr <= 0xFEFF => GetUnusedAddressSpace(addr),
+                { } when addr <= 0xFF7F => GetIORegisters(addr),
+                { } when addr <= 0xFFFE => GetHighRAM(addr),
                 { } when addr == 0xFFFF => GetInterruptEnableFlag(),
                 _ => throw new Exception($"A catastrophic error has occured in the MMU. Address: {addr}")
             };
@@ -145,7 +145,7 @@ namespace Gameboy.Hardware
             
             for (var address = 0; address <= 0xFFFF; address++)
             {
-                var val = GetByte((ushort) address);
+                var val = GetByte(address);
 
                 output.Append(
                     $"{$"0x{address:X4}",-11}" +
@@ -162,44 +162,44 @@ namespace Gameboy.Hardware
             var bytes = new byte[0xFFFF + 1]; // Range is 0 - 0xFFFF inclusive, hence + 1
             for (var address = 0; address <= 0xFFFF; address++)
             {
-                var val = GetByte((ushort) address);
+                var val = GetByte(address);
                 bytes[address] = (byte)val.Data;
             }
 
             return Hex.PrettyPrint(bytes);
         }
         
-        private void SetROMBank(ushort addr, byte val) => _romBank[addr] = val;
-        private GBMemory GetROMBank(ushort addr) => new GBMemory(MemoryRegion.ROM_BANK, _romBank[addr], addr);
+        private void SetROMBank(int addr, int val) => _romBank[addr] = val;
+        private GBMemory GetROMBank(int addr) => new GBMemory(MemoryRegion.ROM_BANK, _romBank[addr], addr);
         
-        private void SetVRAM(ushort addr, byte val) => _gpu.SetByte(addr, val, MemoryRegion.VIDEO_RAM);
-        private GBMemory GetVRAM(ushort addr) => _gpu.GetByte(addr, MemoryRegion.VIDEO_RAM);
+        private void SetVRAM(int addr, int val) => _gpu.SetByte(addr, val, MemoryRegion.VIDEO_RAM);
+        private GBMemory GetVRAM(int addr) => _gpu.GetByte(addr, MemoryRegion.VIDEO_RAM);
 
-        private void SetExternalRAM(ushort addr, byte val) => _externalRam[addr & 0x1FFF] = val;
-        private GBMemory GetExternalRAM(ushort addr) => new GBMemory(MemoryRegion.EXTERNAL_RAM, _externalRam[addr & 0x1FFF], addr);
+        private void SetExternalRAM(int addr, int val) => _externalRam[addr & 0x1FFF] = val;
+        private GBMemory GetExternalRAM(int addr) => new GBMemory(MemoryRegion.EXTERNAL_RAM, _externalRam[addr & 0x1FFF], addr);
 
-        private void SetWorkRAM(ushort addr, byte val) => _workRam[addr & 0x1FFF] = val;
-        private GBMemory GetWorkRAM(ushort addr) => new GBMemory(MemoryRegion.WORK_RAM, _workRam[addr & 0x1FFF], addr);
+        private void SetWorkRAM(int addr, int val) => _workRam[addr & 0x1FFF] = val;
+        private GBMemory GetWorkRAM(int addr) => new GBMemory(MemoryRegion.WORK_RAM, _workRam[addr & 0x1FFF], addr);
 
-        private void SetEchoRAM(ushort addr, byte val) => _workRam[addr & 0x1FFF] = val;
-        private GBMemory GetEchoRAM(ushort addr) => new GBMemory(MemoryRegion.ECHO_RAM, _workRam[addr & 0x1FFF], addr);
+        private void SetEchoRAM(int addr, int val) => _workRam[addr & 0x1FFF] = val;
+        private GBMemory GetEchoRAM(int addr) => new GBMemory(MemoryRegion.ECHO_RAM, _workRam[addr & 0x1FFF], addr);
 
-        private void SetSpriteAttributeTable(ushort addr, byte val) => _gpu.SetByte(addr, val, MemoryRegion.SPRITE_ATTRIBUTE_TABLE);
-        private GBMemory GetSpriteAttributeTable(ushort addr) => _gpu.GetByte(addr, MemoryRegion.SPRITE_ATTRIBUTE_TABLE);
+        private void SetSpriteAttributeTable(int addr, int val) => _gpu.SetByte(addr, val, MemoryRegion.SPRITE_ATTRIBUTE_TABLE);
+        private GBMemory GetSpriteAttributeTable(int addr) => _gpu.GetByte(addr, MemoryRegion.SPRITE_ATTRIBUTE_TABLE);
         
-        private void SetUnusedAddressSpace(ushort addr, byte val) { }
-        private GBMemory GetUnusedAddressSpace(ushort addr) => new GBMemory(MemoryRegion.UNUSED, 0, addr);
+        private void SetUnusedAddressSpace(int addr, int val) { }
+        private GBMemory GetUnusedAddressSpace(int addr) => new GBMemory(MemoryRegion.UNUSED, 0, addr);
 
-        private void SetIORegisters(ushort addr, byte val) => _ioRegisters[addr & 0x007F] = val;
-        private GBMemory GetIORegisters(ushort addr) => new GBMemory(MemoryRegion.IO_REGISTERS, _ioRegisters[addr & 0x007F], addr);
+        private void SetIORegisters(int addr, int val) => _ioRegisters[addr & 0x007F] = val;
+        private GBMemory GetIORegisters(int addr) => new GBMemory(MemoryRegion.IO_REGISTERS, _ioRegisters[addr & 0x007F], addr);
 
-        private void SetHighRAM(ushort addr, byte val) => _highRam[addr & 0x007F] = val;
-        private GBMemory GetHighRAM(ushort addr) => new GBMemory(MemoryRegion.HIGH_RAM, _highRam[addr & 0x007F], addr);
+        private void SetHighRAM(int addr, int val) => _highRam[addr & 0x007F] = val;
+        private GBMemory GetHighRAM(int addr) => new GBMemory(MemoryRegion.HIGH_RAM, _highRam[addr & 0x007F], addr);
 
-        private void SetInterruptEnableFlag(ushort addr, byte val) =>
+        private void SetInterruptEnableFlag(int addr, int val) =>
             _interruptEnableFlag = val == 0 || val == 1
             ? Convert.ToBoolean(val)
             : throw new Exception($"Interrupt Enable Flag can only be 0 or 1. Passed value: {val}");
-        private GBMemory GetInterruptEnableFlag() => new GBMemory(MemoryRegion.INTERRUPT_FLAG, (ushort) (_interruptEnableFlag ? 1 : 0), 0xFFFF);
+        private GBMemory GetInterruptEnableFlag() => new GBMemory(MemoryRegion.INTERRUPT_FLAG, (_interruptEnableFlag ? 1 : 0), 0xFFFF);
     }
 }

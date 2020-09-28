@@ -4,10 +4,10 @@ namespace Gameboy.Interfaces
 {
     public interface IMemoryManagementUnit
     {
-        GBMemory GetByte(ushort address);
-        GBMemory GetWord(ushort address);
-        void SetByte(ushort address, byte val);
-        void SetWord(ushort address, ushort val);
+        GBMemory GetByte(int address);
+        GBMemory GetWord(int address);
+        void SetByte(int address, int val);
+        void SetWord(int address, int val);
         string Dump();
         string HexDump();
     }

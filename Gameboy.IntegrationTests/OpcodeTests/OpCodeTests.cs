@@ -18,7 +18,7 @@ namespace Gameboy.IntegrationTests.OpcodeTests
             var gpu = new GPU();
             var cpu = new CPU();
             var mmu = new MMU(cpu, gpu);
-            Bus.Init(gpu, cpu, mmu);
+            Bus.Init(cpu, gpu, mmu);
             
             _romReader = new Mock<IROMReader>();
             _gameboy = new GameboyDevice(_romReader.Object);

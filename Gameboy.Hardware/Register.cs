@@ -11,6 +11,9 @@ namespace Gameboy.Hardware
             set => _data = AssertCorrectSize(_setter(value));
         }
 
+        public bool IsRegisterGroup =>
+            Id == RegisterId.AF || Id == RegisterId.BC || Id == RegisterId.DE || Id == RegisterId.HL;
+
         private int _data;
         private readonly Func<int, int> _setter;
         private readonly Func<int, int> _getter;

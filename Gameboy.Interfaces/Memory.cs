@@ -20,8 +20,8 @@ namespace Gameboy.Interfaces
         public bool IsByte { get; }
         public MemoryRegion Region { get; }
 
-        public ushort Data { get; }
-        public ushort Address { get; }
+        public int Data { get; }
+        public int Address { get; }
 
         public GBMemory()
         {
@@ -31,7 +31,7 @@ namespace Gameboy.Interfaces
             IsByte = false;
         }
 
-        public GBMemory(MemoryRegion region, ushort data, ushort address)
+        public GBMemory(MemoryRegion region, int data, int address)
         {
             Region = region;
             Data = data;

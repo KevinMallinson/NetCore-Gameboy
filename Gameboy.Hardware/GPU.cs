@@ -9,10 +9,10 @@ namespace Gameboy.Hardware
         //8000		9FFF	8KB Video RAM(VRAM)
         //FE00		FE9F	Sprite attribute table(OAM)
 
-        private byte[] _videoRam = new byte[0x2000]; //8kb
-        private byte[] _spriteAttributeTable = new byte[0x00A0]; //160 bytes
+        private int[] _videoRam = new int[0x2000]; //8kb
+        private int[] _spriteAttributeTable = new int[0x00A0]; //160 bytes
 
-        public GBMemory GetByte(ushort absoluteAddress, MemoryRegion region)
+        public GBMemory GetByte(int absoluteAddress, MemoryRegion region)
         {
             VerifyAddress(absoluteAddress, region);
 
@@ -29,7 +29,7 @@ namespace Gameboy.Hardware
             throw new Exception($"{region} is not valid: must be {MemoryRegion.VIDEO_RAM} or {MemoryRegion.SPRITE_ATTRIBUTE_TABLE}");
         }
 
-        public void SetByte(ushort absoluteAddress, byte val, MemoryRegion region)
+        public void SetByte(int absoluteAddress, int val, MemoryRegion region)
         {
             VerifyAddress(absoluteAddress, region);
 
@@ -48,7 +48,7 @@ namespace Gameboy.Hardware
             throw new Exception($"{region} is not valid: must be {MemoryRegion.VIDEO_RAM} or {MemoryRegion.SPRITE_ATTRIBUTE_TABLE}");
         }
 
-        private static void VerifyAddress(ushort absoluteAddress, MemoryRegion region)
+        private static void VerifyAddress(int absoluteAddress, MemoryRegion region)
         {
             if (region != MemoryRegion.VIDEO_RAM && region != MemoryRegion.SPRITE_ATTRIBUTE_TABLE)
             {

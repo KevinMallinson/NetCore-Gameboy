@@ -49,12 +49,12 @@ namespace Gameboy.ApprovalTests.MMUTests
 
         private static IMemoryManagementUnit FillMMU()
         {
-            var cpu = new Mock<CPU>();
+            var cpu = new CPU();
             var gpu = new GPU();
-            var mmu = new MMU(cpu.Object, gpu);
+            var mmu = new MMU(cpu, gpu);
             Bus.Reset();
-            Bus.Init(gpu, cpu.Object, mmu);
-            var expectedValues = new byte[0xFFFF + 1];
+            Bus.Init(cpu, gpu, mmu);
+            var expectedValues = new int[0xFFFF + 1];
 
             var i = 0;
             while (i < 0xFFFF)
@@ -62,8 +62,8 @@ namespace Gameboy.ApprovalTests.MMUTests
                 if (i == 0xE000) // Skip Echo RAM
                     i = 0xFE00;
 
-                expectedValues[i] = (byte) (i % 256);
-                mmu.SetByte((ushort) i, expectedValues[i]);
+                expectedValues[i] = i % 256;
+                mmu.SetByte(i, expectedValues[i]);
                 i++;
             }
 
@@ -75,7 +75,7 @@ namespace Gameboy.ApprovalTests.MMUTests
                 7680
             ); // Copy the work ram into the echo ram
             
-            Array.Fill(expectedValues, (byte) 0, 0xFEA0, 96); // Unusable Address Space
+            Array.Fill(expectedValues, 0, 0xFEA0, 96); // Unusable Address Space
 
             expectedValues[0xFFFF] = 1; // Interrupt Enable Flag
             mmu.SetByte(0xFFFF, expectedValues[0xFFFF]);

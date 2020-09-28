@@ -5,11 +5,11 @@ namespace Gameboy.Hardware
 {
     public static class Bus
     {
-        public static IGraphicsProcessingUnit GPU { get; private set; }
         public static ICentralProcessingUnit CPU { get; private set; }
+        public static IGraphicsProcessingUnit GPU { get; private set; }
         public static IMemoryManagementUnit MMU { get; private set; }
 
-        public static void Init(IGraphicsProcessingUnit gpu, ICentralProcessingUnit cpu, IMemoryManagementUnit mmu)
+        public static void Init(ICentralProcessingUnit cpu, IGraphicsProcessingUnit gpu, IMemoryManagementUnit mmu)
         {
             if (GPU != null)
                 throw new Exception("GPU is already initialized.");
