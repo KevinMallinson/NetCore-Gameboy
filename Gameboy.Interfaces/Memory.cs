@@ -2,7 +2,6 @@ namespace Gameboy.Interfaces
 {
     public enum MemoryRegion
     {
-        SET_ONLY,
         ROM_BANK,
         VIDEO_RAM,
         EXTERNAL_RAM,
@@ -22,14 +21,6 @@ namespace Gameboy.Interfaces
 
         public int Data { get; }
         public int Address { get; }
-
-        public GBMemory()
-        {
-            Region = MemoryRegion.SET_ONLY;
-            Data = 0;
-            Address = 0;
-            IsByte = false;
-        }
 
         public GBMemory(MemoryRegion region, int data, int address)
         {

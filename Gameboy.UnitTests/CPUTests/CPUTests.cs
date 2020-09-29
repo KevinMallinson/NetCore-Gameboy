@@ -29,66 +29,66 @@ namespace Gameboy.UnitTests.CPUTests
         {
             var cpu = new CPU();
             
-            cpu.Registers[RegisterId.A].Data = 5;
-            Assert.Equal(5, cpu.Registers[RegisterId.A].Data);
-            Assert.Equal(RegisterId.A, cpu.Registers[RegisterId.A].Id);
+            cpu.IOHelper[RegisterId.A].Data = 5;
+            Assert.Equal(5, cpu.IOHelper[RegisterId.A].Data);
+            Assert.Equal(RegisterId.A, cpu.IOHelper[RegisterId.A].Id);
             
-            cpu.Registers[RegisterId.B].Data = 10;
-            Assert.Equal(10, cpu.Registers[RegisterId.B].Data);
-            Assert.Equal(RegisterId.B, cpu.Registers[RegisterId.B].Id);
+            cpu.IOHelper[RegisterId.B].Data = 10;
+            Assert.Equal(10, cpu.IOHelper[RegisterId.B].Data);
+            Assert.Equal(RegisterId.B, cpu.IOHelper[RegisterId.B].Id);
             
-            cpu.Registers[RegisterId.C].Data = 15;
-            Assert.Equal(15, cpu.Registers[RegisterId.C].Data);
-            Assert.Equal(RegisterId.C, cpu.Registers[RegisterId.C].Id);
+            cpu.IOHelper[RegisterId.C].Data = 15;
+            Assert.Equal(15, cpu.IOHelper[RegisterId.C].Data);
+            Assert.Equal(RegisterId.C, cpu.IOHelper[RegisterId.C].Id);
             
-            cpu.Registers[RegisterId.D].Data = 20;
-            Assert.Equal(20, cpu.Registers[RegisterId.D].Data);
-            Assert.Equal(RegisterId.D, cpu.Registers[RegisterId.D].Id);
+            cpu.IOHelper[RegisterId.D].Data = 20;
+            Assert.Equal(20, cpu.IOHelper[RegisterId.D].Data);
+            Assert.Equal(RegisterId.D, cpu.IOHelper[RegisterId.D].Id);
             
-            cpu.Registers[RegisterId.E].Data = 25;
-            Assert.Equal(25, cpu.Registers[RegisterId.E].Data);
-            Assert.Equal(RegisterId.E, cpu.Registers[RegisterId.E].Id);
+            cpu.IOHelper[RegisterId.E].Data = 25;
+            Assert.Equal(25, cpu.IOHelper[RegisterId.E].Data);
+            Assert.Equal(RegisterId.E, cpu.IOHelper[RegisterId.E].Id);
             
-            cpu.Registers[RegisterId.F].Data = 30;
-            Assert.Equal(30 & 0xF0, cpu.Registers[RegisterId.F].Data); // last 4 bits get emptied out.
-            Assert.Equal(RegisterId.F, cpu.Registers[RegisterId.F].Id);
+            cpu.IOHelper[RegisterId.F].Data = 30;
+            Assert.Equal(30 & 0xF0, cpu.IOHelper[RegisterId.F].Data); // last 4 bits get emptied out.
+            Assert.Equal(RegisterId.F, cpu.IOHelper[RegisterId.F].Id);
             
-            cpu.Registers[RegisterId.H].Data = 35;
-            Assert.Equal(35, cpu.Registers[RegisterId.H].Data);
-            Assert.Equal(RegisterId.H, cpu.Registers[RegisterId.H].Id);
+            cpu.IOHelper[RegisterId.H].Data = 35;
+            Assert.Equal(35, cpu.IOHelper[RegisterId.H].Data);
+            Assert.Equal(RegisterId.H, cpu.IOHelper[RegisterId.H].Id);
             
-            cpu.Registers[RegisterId.L].Data = 40;
-            Assert.Equal(40, cpu.Registers[RegisterId.L].Data);
-            Assert.Equal(RegisterId.L, cpu.Registers[RegisterId.L].Id);
+            cpu.IOHelper[RegisterId.L].Data = 40;
+            Assert.Equal(40, cpu.IOHelper[RegisterId.L].Data);
+            Assert.Equal(RegisterId.L, cpu.IOHelper[RegisterId.L].Id);
             
-            cpu.Registers[RegisterId.AF].Data = 65535;
-            Assert.Equal(65535 & 0xFFF0, cpu.Registers[RegisterId.AF].Data); // last 4 bits of F gets emptied out.
-            Assert.Equal(RegisterId.AF, cpu.Registers[RegisterId.AF].Id);
+            cpu.IOHelper[RegisterId.AF].Data = 65535;
+            Assert.Equal(65535 & 0xFFF0, cpu.IOHelper[RegisterId.AF].Data); // last 4 bits of F gets emptied out.
+            Assert.Equal(RegisterId.AF, cpu.IOHelper[RegisterId.AF].Id);
             
-            cpu.Registers[RegisterId.BC].Data = 65280;
-            Assert.Equal(65280, cpu.Registers[RegisterId.BC].Data);
-            Assert.Equal(RegisterId.BC, cpu.Registers[RegisterId.BC].Id);
+            cpu.IOHelper[RegisterId.BC].Data = 65280;
+            Assert.Equal(65280, cpu.IOHelper[RegisterId.BC].Data);
+            Assert.Equal(RegisterId.BC, cpu.IOHelper[RegisterId.BC].Id);
             
-            cpu.Registers[RegisterId.DE].Data = 25000;
-            Assert.Equal(25000, cpu.Registers[RegisterId.DE].Data);
-            Assert.Equal(RegisterId.DE, cpu.Registers[RegisterId.DE].Id);
+            cpu.IOHelper[RegisterId.DE].Data = 25000;
+            Assert.Equal(25000, cpu.IOHelper[RegisterId.DE].Data);
+            Assert.Equal(RegisterId.DE, cpu.IOHelper[RegisterId.DE].Id);
             
-            cpu.Registers[RegisterId.HL].Data = 12500;
-            Assert.Equal(12500, cpu.Registers[RegisterId.HL].Data);
-            Assert.Equal(RegisterId.HL, cpu.Registers[RegisterId.HL].Id);
+            cpu.IOHelper[RegisterId.HL].Data = 12500;
+            Assert.Equal(12500, cpu.IOHelper[RegisterId.HL].Data);
+            Assert.Equal(RegisterId.HL, cpu.IOHelper[RegisterId.HL].Id);
             
             //Each 16 bit register is based on two 8 bit registers, first register is MSB.
-            Assert.Equal(65535 >> 8, cpu.Registers[RegisterId.A].Data); 
-            Assert.Equal(65535 & 0x00F0, cpu.Registers[RegisterId.F].Data); // last 4 bits of F gets emptied out.
+            Assert.Equal(65535 >> 8, cpu.IOHelper[RegisterId.A].Data); 
+            Assert.Equal(65535 & 0x00F0, cpu.IOHelper[RegisterId.F].Data); // last 4 bits of F gets emptied out.
             
-            Assert.Equal(65280 >> 8, cpu.Registers[RegisterId.B].Data);
-            Assert.Equal(65280 & 0x00FF, cpu.Registers[RegisterId.C].Data); 
+            Assert.Equal(65280 >> 8, cpu.IOHelper[RegisterId.B].Data);
+            Assert.Equal(65280 & 0x00FF, cpu.IOHelper[RegisterId.C].Data); 
             
-            Assert.Equal(25000 >> 8, cpu.Registers[RegisterId.D].Data); 
-            Assert.Equal(25000 & 0x00FF, cpu.Registers[RegisterId.E].Data); 
+            Assert.Equal(25000 >> 8, cpu.IOHelper[RegisterId.D].Data); 
+            Assert.Equal(25000 & 0x00FF, cpu.IOHelper[RegisterId.E].Data); 
             
-            Assert.Equal(12500 >> 8, cpu.Registers[RegisterId.H].Data); 
-            Assert.Equal(12500 & 0x00FF, cpu.Registers[RegisterId.L].Data);
+            Assert.Equal(12500 >> 8, cpu.IOHelper[RegisterId.H].Data); 
+            Assert.Equal(12500 & 0x00FF, cpu.IOHelper[RegisterId.L].Data);
         }
         
         [Theory]
@@ -156,14 +156,14 @@ namespace Gameboy.UnitTests.CPUTests
             var val = _rand.Next(0, 0xFF + 1);
             _mmu.SetByte(0, opcode);
             
-            _cpu.Registers[src].Data = val;
+            _cpu.IOHelper[src].Data = val;
             
             var executedOpcode = _cpu.Step();
             
             Assert.Equal($"{mnemonic} {registers}", executedOpcode.ToString());
             Assert.Equal(4, executedOpcode.Cycles);
-            Assert.Equal(val, _cpu.Registers[src].Data);
-            Assert.Equal(val, _cpu.Registers[dest].Data);
+            Assert.Equal(val, _cpu.IOHelper[src].Data);
+            Assert.Equal(val, _cpu.IOHelper[dest].Data);
         }
         
         [Theory]
@@ -188,11 +188,11 @@ namespace Gameboy.UnitTests.CPUTests
             
             // Just use bank 0 of RAM.
             var address = _rand.Next(0xC000, 0xCFFF + 1);
-            _cpu.Registers[dest].Data = address;
-            Assert.Equal(address, _cpu.Registers[dest].Data);
+            _cpu.IOHelper[dest].Data = address;
+            Assert.Equal(address, _cpu.IOHelper[dest].Data);
             
             var val = _rand.Next(0, 0xFF + 1);
-            _cpu.Registers[src].Data = val;
+            _cpu.IOHelper[src].Data = val;
 
             if (src == hiRegister)
             {
@@ -210,11 +210,11 @@ namespace Gameboy.UnitTests.CPUTests
             
             Assert.Equal($"{mnemonic} {registers}", executedOpcode.ToString());
             Assert.Equal(8, executedOpcode.Cycles);
-            Assert.Equal(address, _cpu.Registers[dest].Data);
-            Assert.Equal(val, _cpu.Registers[src].Data);
-            Assert.Equal(val, Bus.MMU.GetByte(_cpu.Registers[dest].Data).Data);
-            Assert.Equal(address >> 8, _cpu.Registers[hiRegister].Data);
-            Assert.Equal(address & 0x00FF, _cpu.Registers[loRegister].Data);
+            Assert.Equal(address, _cpu.IOHelper[dest].Data);
+            Assert.Equal(val, _cpu.IOHelper[src].Data);
+            Assert.Equal(val, Bus.MMU.GetByte(_cpu.IOHelper[dest].Data).Data);
+            Assert.Equal(address >> 8, _cpu.IOHelper[hiRegister].Data);
+            Assert.Equal(address & 0x00FF, _cpu.IOHelper[loRegister].Data);
         }
         
         [Theory] // (HL) means value at memory address stored in Register HL.
@@ -235,8 +235,8 @@ namespace Gameboy.UnitTests.CPUTests
             
             // Just use bank 0 of RAM.
             var address = _rand.Next(0xC000, 0xCFFF + 1);
-            _cpu.Registers[src].Data = address;
-            Assert.Equal(address, _cpu.Registers[src].Data);
+            _cpu.IOHelper[src].Data = address;
+            Assert.Equal(address, _cpu.IOHelper[src].Data);
             
             var val = _rand.Next(0, 0xFF + 1);
             Bus.MMU.SetByte(address, val);
@@ -260,10 +260,10 @@ namespace Gameboy.UnitTests.CPUTests
             
             Assert.Equal($"{mnemonic} {registers}", executedOpcode.ToString());
             Assert.Equal(8, executedOpcode.Cycles);
-            Assert.Equal(val, _cpu.Registers[dest].Data);
-            Assert.Equal(address >> 8, _cpu.Registers[hiRegister].Data);
-            Assert.Equal(address & 0x00FF, _cpu.Registers[loRegister].Data);
-            Assert.Equal(address, _cpu.Registers[src].Data);
+            Assert.Equal(val, _cpu.IOHelper[dest].Data);
+            Assert.Equal(address >> 8, _cpu.IOHelper[hiRegister].Data);
+            Assert.Equal(address & 0x00FF, _cpu.IOHelper[loRegister].Data);
+            Assert.Equal(address, _cpu.IOHelper[src].Data);
         }
     }
 }

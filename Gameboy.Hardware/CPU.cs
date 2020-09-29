@@ -1,6 +1,8 @@
 ﻿// ReSharper disable MemberCanBePrivate.Global
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Gameboy.Extensions;
 using Gameboy.Interfaces;
 
@@ -10,74 +12,76 @@ namespace Gameboy.Hardware
     {
         public int ProgramCounter { get; set; }
         public int StackPointer { get; set; }
-        public RegisterDictionary Registers { get; }
-        public LDHelper LDHelper { get; }
+        public IOHelper IOHelper { get; }
+        public IReadOnlyDictionary<RegisterId, Register> Registers;
+        private readonly LDHelper _ldHelper;
 
         public CPU()
         {
-            Registers = new RegisterDictionary();
-            LDHelper = new LDHelper(Registers);
+            IOHelper = new IOHelper();
+            _ldHelper = new LDHelper(IOHelper);
+            Registers = IOHelper.Registers;
         }
         
         public ExecutedOpcode LD(int opcode, int? data = null)
         {
-            var mapping = LDHelper[opcode]; 
+            var mapping = _ldHelper[opcode]; 
             if (mapping.From.IsRegisterGroup && mapping.To.IsRegisterGroup && mapping.From.Id == mapping.To.Id)
             {
                 throw new Exception($"From and To registers cannot both be {mapping.To.Id}.");
             }
 
-            return mapping.From.IsRegisterGroup ? LDFromMemory(mapping.To.Id, mapping.From.Id) :
-                mapping.To.IsRegisterGroup ? LDToMemory(mapping.To.Id, mapping.From.Id) :
-                LDFromRegister(mapping.To.Id, mapping.From.Id);
-        }
-
-        private ExecutedOpcode LDFromRegister(RegisterId dest, RegisterId src)
-        {
-            Registers[dest] = Registers[src];
-            ProgramCounter++;
+            var executedOpcode = mapping.Parameter switch
+            {
+                LDParameter.NONE => LD(mapping),
+                LDParameter.BYTE => LDImmediate(mapping, data),
+                LDParameter.SHORT => LDImmediate(mapping, data),
+                _ => throw new Exception($"Cannot understand LDParameter type {mapping.Parameter}")
+            };
             
-            var opcode = $"LD {dest.ToString()},{src.ToString()}";
-            return new ExecutedOpcode(4, opcode, ProgramCounter, StackPointer, OpcodeType.LOAD);           
+            var incrementValue = data == null ? 1 : mapping.Parameter == LDParameter.BYTE ? 2 : 3;
+            ProgramCounter += incrementValue;
+            return executedOpcode;
+        }
+
+        private ExecutedOpcode LD(LDMapping mapping)
+        {
+            IOHelper[mapping.To.Id].Data = IOHelper[mapping.From.Id].Data;
+            IncrementRegister(mapping);
+            ProgramCounter++;
+            return new ExecutedOpcode(mapping.Cycles, mapping.Opcode, ProgramCounter, StackPointer, OpcodeType.LOAD);
         }
         
-        private ExecutedOpcode LDFromMemory(RegisterId dest, RegisterId src)
+        private ExecutedOpcode LDImmediate(LDMapping mapping, int? data)
         {
-            var address = Registers[src].Data;
-            var memory = Bus.MMU.GetByte(address);
-            Registers[dest].Data = memory.Data;
+            if (data == null)
+            {
+                throw new Exception($"Cannot have a null immediate data argument for opcode {mapping.Opcode}");
+            }
 
-            var opcode = $"LD {dest.ToString()},(HL)";
-            return new ExecutedOpcode(8, opcode, ProgramCounter, StackPointer, OpcodeType.LOAD);
+            var valid16BitRegisters = new[] {RegisterId.AF, RegisterId.BC, RegisterId.DE, RegisterId.HL};
+            if (mapping.Parameter == LDParameter.SHORT && !valid16BitRegisters.Contains(mapping.To.Id))
+            {
+                throw new Exception(
+                    $"Cannot assign a short value {data.Value} to register {mapping.To.Id}. Opcode: {mapping.Opcode}");
+            }
+            
+            IOHelper[mapping.To.Id].Data = data.Value;
+            ProgramCounter += mapping.Parameter == LDParameter.BYTE ? 2 : 3;
+            return new ExecutedOpcode(mapping.Cycles, mapping.Opcode, ProgramCounter, StackPointer, OpcodeType.LOAD);           
         }
 
-        private ExecutedOpcode LDToMemory(RegisterId dest, RegisterId src)
+        private static void IncrementRegister(LDMapping mapping)
         {
-            var address = Registers[dest].Data;
-            var val = Registers[src].Data;
-            Bus.MMU.SetByte(address, val);
- 
-            var opcode = $"LD (HL),{src.ToString()}";
-            return new ExecutedOpcode(8, opcode, ProgramCounter, StackPointer, OpcodeType.LOAD);  
+            if (mapping.From.IsRegisterGroup)
+            {
+                mapping.From.Data += mapping.IncrementValue;
+            }
+            else if (mapping.To.IsRegisterGroup)
+            {
+                mapping.To.Data += mapping.IncrementValue;
+            }
         }
-        
-
-        // public ExecutedOpcode LD(RegisterId dest, GBMemory memory)
-        // {
-        //     if (memory.IsByte)
-        //     {
-        //         Registers[dest].Data = memory.Data;
-        //     }
-        //     else
-        //     {
-        //         throw new NotImplementedException();
-        //     }
-        //     
-        //     ProgramCounter += 2;
-        //     
-        //     var opcode = $"LD {dest.ToString()}, {memory.Data.ToLittleEndian()}";
-        //     return new ExecutedOpcode(8, opcode, ProgramCounter, StackPointer, OpcodeType.LOAD);
-        // }
 
         public ExecutedOpcode JMP(GBMemory memory)
         {

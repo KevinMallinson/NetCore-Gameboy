@@ -23,24 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="025b4446-29da-46c7-a8c0-980a498bbe6e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Gameboy.Hardware/LDHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Extensions/UshortExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Extensions/intExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/GPU.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/GPU.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Register.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/Register.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.IntegrationTests/OpcodeTests/OpCodeTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.IntegrationTests/OpcodeTests/OpCodeTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/IGraphicsProcessingUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Interfaces/IGraphicsProcessingUnit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/IMemoryManagementUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Interfaces/IMemoryManagementUnit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/LDHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/LDHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/RegisterDictionary.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/RegisterDictionary.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/RegisterId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Hardware/RegisterId.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/Memory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.Interfaces/Memory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gameboy.UnitTests/CPUTests/CPUTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.UnitTests/CPUTests/CPUTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,20 +50,17 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EB067793-5C3F-4219-AEF1-3AB117C20649/3A4/List.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EB067793-5C3F-4219-AEF1-3AB117C20649/94/e48d340e/IEnumerator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/cc/4877d99a/ExecutionTimer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/853A1000-2F25-40BB-883D-5E8E84A42E25/73/651a4c2e/Hex.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Gameboy.Interfaces/IMemoryManagementUnit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Gameboy.Hardware/GPU.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EB067793-5C3F-4219-AEF1-3AB117C20649/2E1/Opcode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/921C1C87-A4F0-41BC-A833-546163C5436A/B/ReadOnlyDictionary.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/d9/b0109e6d/TestInvoker`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EB067793-5C3F-4219-AEF1-3AB117C20649/70/EventArgs.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/EB067793-5C3F-4219-AEF1-3AB117C20649/39D/Dictionary.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -105,24 +92,24 @@
         <option value="$PROJECT_DIR$/Gameboy.Extensions/UshortExtensions.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/RegisterEnum.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/RegisterId" />
-        <option value="$PROJECT_DIR$/Gameboy.Hardware/RegisterId.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Interfaces/ExecutedOpcode.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/Registers.cs" />
-        <option value="$PROJECT_DIR$/Gameboy.Hardware/RegisterDictionary.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" />
         <option value="$PROJECT_DIR$/Gameboy.IntegrationTests/OpcodeTests/OpCodeTests.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Interfaces/IMemoryManagementUnit.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Interfaces/IGraphicsProcessingUnit.cs" />
-        <option value="$PROJECT_DIR$/Gameboy.Interfaces/Memory.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Extensions/intExtensions.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/GPU.cs" />
         <option value="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" />
         <option value="$PROJECT_DIR$/Gameboy.UnitTests/CPUTests/CPUTests.cs" />
-        <option value="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/Register.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Hardware/RegisterId.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Interfaces/Memory.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Hardware/RegisterDictionary.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/LDHelper.cs" />
+        <option value="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" />
       </list>
     </option>
   </component>
@@ -218,6 +205,8 @@
       <workItem from="1601052642933" duration="12868000" />
       <workItem from="1601140918761" duration="9972000" />
       <workItem from="1601227363338" duration="16996000" />
+      <workItem from="1601313517325" duration="3293000" />
+      <workItem from="1601340745264" duration="8534000" />
     </task>
     <servers />
   </component>
@@ -377,20 +366,21 @@
     </state>
     <state x="413" y="235" key="Rider.ProjectTemplateDialog.Size/0.23.1680.953@0.23.1680.953" timestamp="1601065296687" />
     <state x="413" y="236" key="Rider.ProjectTemplateDialog.Size/0.23.1680.956@0.23.1680.956" timestamp="1600896059154" />
-    <state x="625" y="178" key="RiderGenerateDialog" timestamp="1601178214857">
+    <state x="625" y="178" key="RiderGenerateDialog" timestamp="1601317418601">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="625" y="178" key="RiderGenerateDialog/0.23.1680.953@0.23.1680.953" timestamp="1601178214857" />
+    <state x="625" y="178" key="RiderGenerateDialog/0.23.1680.953@0.23.1680.953" timestamp="1601317418601" />
     <state x="625" y="178" key="RiderGenerateDialog/0.23.1680.956@0.23.1680.956" timestamp="1601055497529" />
-    <state x="314" y="136" key="SettingsEditor" timestamp="1601246630651">
+    <state x="314" y="136" key="SettingsEditor" timestamp="1601344927646">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
     <state x="314" y="136" key="SettingsEditor/0.23.1680.952@0.23.1680.952" timestamp="1601144105370" />
-    <state x="314" y="136" key="SettingsEditor/0.23.1680.953@0.23.1680.953" timestamp="1601246630651" />
+    <state x="314" y="136" key="SettingsEditor/0.23.1680.953@0.23.1680.953" timestamp="1601344927646" />
     <state x="314" y="136" key="SettingsEditor/0.23.1680.956@0.23.1680.956" timestamp="1601058637154" />
-    <state x="100" y="123" width="1426" height="749" key="VCS.FileHistoryDialog" timestamp="1601058271784">
-      <screen x="0" y="23" width="1680" height="956" />
+    <state x="100" y="123" width="1426" height="747" key="VCS.FileHistoryDialog" timestamp="1601349412377">
+      <screen x="0" y="23" width="1680" height="953" />
     </state>
+    <state x="100" y="123" width="1426" height="747" key="VCS.FileHistoryDialog/0.23.1680.953@0.23.1680.953" timestamp="1601349412377" />
     <state x="100" y="123" width="1426" height="749" key="VCS.FileHistoryDialog/0.23.1680.956@0.23.1680.956" timestamp="1601058271784" />
     <state x="441" y="130" width="743" height="733" key="find.popup" timestamp="1601246549967">
       <screen x="0" y="23" width="1680" height="953" />
@@ -404,11 +394,11 @@
     <state width="600" height="427" key="javadoc.popup/0.23.1680.952@0.23.1680.952" timestamp="1601145024248" />
     <state width="600" height="428" key="javadoc.popup/0.23.1680.953@0.23.1680.953" timestamp="1601178396634" />
     <state width="600" height="428" key="javadoc.popup/0.23.1680.956@0.23.1680.956" timestamp="1601008916035" />
-    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup" timestamp="1601264932596">
+    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup" timestamp="1601349869252">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup/0.23.1680.952@0.23.1680.952" timestamp="1601244529296" />
-    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup/0.23.1680.953@0.23.1680.953" timestamp="1601264932596" />
+    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup/0.23.1680.952@0.23.1680.952" timestamp="1601314548704" />
+    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup/0.23.1680.953@0.23.1680.953" timestamp="1601349869252" />
     <state x="476" y="229" width="672" height="678" key="search.everywhere.popup/0.23.1680.956@0.23.1680.956" timestamp="1601062595152" />
   </component>
   <component name="XDebuggerManager">

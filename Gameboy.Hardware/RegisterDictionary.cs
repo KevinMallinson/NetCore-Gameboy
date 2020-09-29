@@ -1,72 +1,140 @@
 using System.Collections.Generic;
+using Gameboy.Interfaces;
 
 namespace Gameboy.Hardware
 {
-    public class RegisterDictionary : Dictionary<RegisterId, Register>
+    public class IOHelper
     {
-        public RegisterDictionary()
+        private readonly IReadOnlyDictionary<RegisterId, Register> _registers;
+        
+        //Own DSL, Not exposed to public
+        //Created solely to help with getting data at memory address assigned in register
+        private readonly IReadOnlyDictionary<RegisterId, Register> _ramRegisters;
+
+        public IReadOnlyDictionary<RegisterId, Register> Registers => _registers;
+        
+        public IOHelper()
         {
-            Add(RegisterId.B, new Register(RegisterId.B));
-            Add(RegisterId.C, new Register(RegisterId.C));
-            Add(RegisterId.D, new Register(RegisterId.D));
-            Add(RegisterId.E, new Register(RegisterId.E));
-            Add(RegisterId.H, new Register(RegisterId.H));
-            Add(RegisterId.L, new Register(RegisterId.L));
-            Add(RegisterId.F, new Register(RegisterId.F, x => x & 0xF0, x => x & 0xF0));
-            Add(RegisterId.A, new Register(RegisterId.A));
-            
-            Add(RegisterId.AF, new Register
+            var dictionary = new Dictionary<RegisterId, Register>
+            {
+                {RegisterId.B, new Register(RegisterId.B)},
+                {RegisterId.C, new Register(RegisterId.C)},
+                {RegisterId.D, new Register(RegisterId.D)},
+                {RegisterId.E, new Register(RegisterId.E)},
+                {RegisterId.H, new Register(RegisterId.H)},
+                {RegisterId.L, new Register(RegisterId.L)},
+                {RegisterId.F, new Register(RegisterId.F, x => x & 0xF0, x => x & 0xF0)},
+                {RegisterId.A, new Register(RegisterId.A)}
+            };
+
+            dictionary.Add(RegisterId.AF, new Register
             (
-                RegisterId.AF, 
-                x => this[RegisterId.A].Data << 8 | this[RegisterId.F].Data,
+                RegisterId.AF,
+                x => dictionary[RegisterId.A].Data << 8 | dictionary[RegisterId.F].Data,
                 x =>
                 {
                     //Flags last 4 bits always zero (ZNHC0000)
-                    this[RegisterId.A].Data = x >> 8;
-                    this[RegisterId.F].Data = x & 0x00F0;
+                    dictionary[RegisterId.A].Data = x >> 8;
+                    dictionary[RegisterId.F].Data = x & 0x00F0;
                     return x & 0xFFF0;
-                }, 
+                },
                 isByte: false
             ));
-            
-            Add(RegisterId.BC, new Register
+
+            dictionary.Add(RegisterId.BC, new Register
             (
                 RegisterId.BC,
-                x => this[RegisterId.B].Data << 8 | this[RegisterId.C].Data,
+                x => dictionary[RegisterId.B].Data << 8 | dictionary[RegisterId.C].Data,
                 x =>
                 {
-                    this[RegisterId.B].Data = x >> 8;
-                    this[RegisterId.C].Data = x & 0x00FF;
+                    dictionary[RegisterId.B].Data = x >> 8;
+                    dictionary[RegisterId.C].Data = x & 0x00FF;
                     return x;
                 },
                 isByte: false
             ));
-            
-            Add(RegisterId.DE, new Register
+
+            dictionary.Add(RegisterId.DE, new Register
             (
                 RegisterId.DE,
-                x => this[RegisterId.D].Data << 8 | this[RegisterId.E].Data,
+                x => dictionary[RegisterId.D].Data << 8 | dictionary[RegisterId.E].Data,
                 x =>
                 {
-                    this[RegisterId.D].Data = x >> 8;
-                    this[RegisterId.E].Data = x & 0x00FF;
+                    dictionary[RegisterId.D].Data = x >> 8;
+                    dictionary[RegisterId.E].Data = x & 0x00FF;
                     return x;
                 },
                 isByte: false
             ));
-            
-            Add(RegisterId.HL, new Register
+
+            dictionary.Add(RegisterId.HL, new Register
             (
                 RegisterId.HL,
-                x => this[RegisterId.H].Data << 8 | this[RegisterId.L].Data,
+                x => dictionary[RegisterId.H].Data << 8 | dictionary[RegisterId.L].Data,
                 x =>
                 {
-                    this[RegisterId.H].Data = x >> 8;
-                    this[RegisterId.L].Data = x & 0x00FF;
+                    dictionary[RegisterId.H].Data = x >> 8;
+                    dictionary[RegisterId.L].Data = x & 0x00FF;
                     return x;
                 },
                 isByte: false
             ));
+
+            /*
+             * PSUEDO REGISTERS - My own DSL for the following:
+             * These are for things like (HL)
+             * I.E get/set the memory at the address stored in the register HL
+             * Uses: (BC), (DE), (HL), (C)
+             */
+            var ramDictionary = new Dictionary<RegisterId, Register>();
+            ramDictionary.Add(RegisterId.HL & RegisterId.FROM_RAM, new Register
+            (
+                RegisterId.HL & RegisterId.FROM_RAM,
+                x => Bus.MMU.GetByte(dictionary[RegisterId.H].Data << 8 | dictionary[RegisterId.L].Data).Data,
+                x =>
+                {
+                    Bus.MMU.SetByte(dictionary[RegisterId.HL].Data, x);
+                    return x;
+                }
+            ));
+
+            ramDictionary.Add(RegisterId.BC & RegisterId.FROM_RAM, new Register
+            (
+                RegisterId.BC & RegisterId.FROM_RAM,
+                x => Bus.MMU.GetByte(dictionary[RegisterId.B].Data << 8 | dictionary[RegisterId.C].Data).Data,
+                x =>
+                {
+                    Bus.MMU.SetByte(dictionary[RegisterId.BC].Data, x);
+                    return x;
+                }
+            ));
+
+            ramDictionary.Add(RegisterId.DE & RegisterId.FROM_RAM, new Register
+            (
+                RegisterId.DE & RegisterId.FROM_RAM,
+                x => Bus.MMU.GetByte(dictionary[RegisterId.D].Data << 8 | dictionary[RegisterId.E].Data).Data,
+                x =>
+                {
+                    Bus.MMU.SetByte(dictionary[RegisterId.DE].Data, x);
+                    return x;
+                }
+            ));
+
+            ramDictionary.Add(RegisterId.C & RegisterId.FROM_RAM, new Register
+            (
+                RegisterId.C & RegisterId.FROM_RAM,
+                x => Bus.MMU.GetByte(0xFF00 + dictionary[RegisterId.C].Data).Data,
+                x =>
+                {
+                    Bus.MMU.SetByte(0xFF00 + dictionary[RegisterId.DE].Data, x);
+                    return x;
+                }
+            ));
+
+            _registers = dictionary;
+            _ramRegisters = ramDictionary;
         }
+        
+        public Register this[RegisterId id] => id.HasFlag(RegisterId.FROM_RAM) ? _ramRegisters[id] : _registers[id];
     }
 }
