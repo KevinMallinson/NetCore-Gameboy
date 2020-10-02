@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <PackageReference Include="ApprovalTests" Version="5.4.2" />
-    <PackageReference Include="Hexify" Version="1.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Moq" Version="4.14.5" />
     <PackageReference Include="morelinq" Version="3.3.2" />
@@ -20,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gameboy.Hardware\Gameboy.Hardware.csproj" />
-    <ProjectReference Include="..\Gameboy.Interfaces\Gameboy.Interfaces.csproj" />
+    <ProjectReference Include="..\Hardware\Hardware.csproj" />
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
   </ItemGroup>
 </Project>

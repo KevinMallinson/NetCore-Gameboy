@@ -8,113 +8,115 @@
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
-      <e p="Gameboy" t="IncludeRecursive">
+      <e p="Application" t="IncludeRecursive">
+        <e p="Application.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Gameboy.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="Gameboy.AssemblyInfo.cs" t="Include" />
+              <e p="Application.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
         <e p="Program.cs" t="Include" />
       </e>
-      <e p="Gameboy.ApprovalTests" t="IncludeRecursive">
+      <e p="Extensions" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Gameboy.ApprovalTests.csproj" t="IncludeRecursive" />
-        <e p="MMUTests" t="Include">
-          <e p="MMUTests.cs" t="Include" />
-          <e p="MMUTests.MMU_ValidateHexDump.approved.txt" t="Include" />
-          <e p="MMUTests.MMU_ValidateHumanReadableDump.approved.txt" t="Include" />
-        </e>
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="netcoreapp3.1" t="Include">
-              <e p="Gameboy.ApprovalTests.AssemblyInfo.cs" t="Include" />
-            </e>
-          </e>
-        </e>
-      </e>
-      <e p="Gameboy.Extensions" t="IncludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="Gameboy.Extensions.csproj" t="IncludeRecursive" />
+        <e p="Extensions.csproj" t="IncludeRecursive" />
         <e p="intExtensions.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="Gameboy.Extensions.AssemblyInfo.cs" t="Include" />
+              <e p="Extensions.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
+        <e p="ushortExtensions.cs" t="Include" />
       </e>
-      <e p="Gameboy.Hardware" t="IncludeRecursive">
+      <e p="Hardware" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Bus.cs" t="Include" />
-        <e p="CPU.cs" t="Include" />
-        <e p="Gameboy.cs" t="Include" />
-        <e p="Gameboy.Hardware.csproj" t="IncludeRecursive" />
-        <e p="GPU.cs" t="Include" />
-        <e p="LDHelper.cs" t="Include" />
-        <e p="MMU.cs" t="Include" />
+        <e p="Graphics" t="Include">
+          <e p="GPU.cs" t="Include" />
+        </e>
+        <e p="Hardware.csproj" t="IncludeRecursive" />
+        <e p="Instructions" t="Include">
+          <e p="LD.cs" t="Include" />
+          <e p="LDH.cs" t="Include" />
+        </e>
+        <e p="Memory" t="Include">
+          <e p="Address.cs" t="Include" />
+          <e p="ByteMemory.cs" t="Include" />
+          <e p="MMU.cs" t="Include" />
+          <e p="WordMemory.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="Gameboy.Hardware.AssemblyInfo.cs" t="Include" />
+              <e p="Hardware.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
-        <e p="Register.cs" t="Include" />
-        <e p="RegisterDictionary.cs" t="Include" />
-        <e p="RegisterId.cs" t="Include" />
-      </e>
-      <e p="Gameboy.IntegrationTests" t="IncludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="Gameboy.IntegrationTests.csproj" t="IncludeRecursive" />
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="netcoreapp3.1" t="Include">
-              <e p="Gameboy.IntegrationTests.AssemblyInfo.cs" t="Include" />
-            </e>
-          </e>
+        <e p="Processor" t="Include">
+          <e p="CPU.cs" t="Include" />
+          <e p="ExecutedOpcode.cs" t="Include" />
+          <e p="InstructionTable.cs" t="Include" />
         </e>
-        <e p="OpcodeTests" t="Include">
-          <e p="OpCodeTests.cs" t="Include" />
+        <e p="Registers" t="Include">
+          <e p="ByteRegister.cs" t="Include" />
+          <e p="RegisterIO.cs" t="Include" />
+          <e p="RegisterPair.cs" t="Include" />
+          <e p="WordRegister.cs" t="Include" />
+        </e>
+        <e p="System" t="Include">
+          <e p="Bus.cs" t="Include" />
+          <e p="Gameboy.cs" t="Include" />
         </e>
       </e>
-      <e p="Gameboy.Interfaces" t="IncludeRecursive">
+      <e p="Interfaces" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
-        <e p="ExecutedOpcode.cs" t="Include" />
-        <e p="Gameboy.Interfaces.csproj" t="IncludeRecursive" />
         <e p="ICentralProcessingUnit.cs" t="Include" />
+        <e p="IExecutedOpcode.cs" t="Include" />
         <e p="IGraphicsProcessingUnit.cs" t="Include" />
+        <e p="IInstruction.cs" t="Include" />
+        <e p="IInstructionTable.cs" t="Include" />
+        <e p="IMemory.cs" t="Include" />
         <e p="IMemoryManagementUnit.cs" t="Include" />
+        <e p="Interfaces.csproj" t="IncludeRecursive" />
+        <e p="IRegister.cs" t="Include" />
+        <e p="IRegisterIO.cs" t="Include" />
         <e p="IROMReader.cs" t="Include" />
-        <e p="Memory.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="Gameboy.Interfaces.AssemblyInfo.cs" t="Include" />
-            </e>
-          </e>
-        </e>
-      </e>
-      <e p="Gameboy.UnitTests" t="IncludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="CPUTests" t="Include">
-          <e p="CPUTests.cs" t="Include" />
-        </e>
-        <e p="Gameboy.UnitTests.csproj" t="IncludeRecursive" />
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="netcoreapp3.1" t="Include">
-              <e p="Gameboy.UnitTests.AssemblyInfo.cs" t="Include" />
+              <e p="Interfaces.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
       </e>
       <e p="NetCore GameBoy.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
+      <e p="UnitTests" t="IncludeRecursive">
+        <e p="ApprovalTests" t="Include">
+          <e p="MMUTests" t="Include">
+            <e p="MMUTests.cs" t="Include" />
+            <e p="MMUTests.MMU_ValidateHexDump.approved.txt" t="Include" />
+            <e p="MMUTests.MMU_ValidateHumanReadableDump.approved.txt" t="Include" />
+            <e p="MMUTests.MMU_ValidateHumanReadableDump.received.txt" t="Include" />
+          </e>
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CPUTests" t="Include">
+          <e p="CPUTests.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="UnitTests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="UnitTests.csproj" t="IncludeRecursive" />
+      </e>
     </e>
     <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.2/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.2/resharper-host/local/Transient/Rider/v202/SolutionCaches/_NetCore GameBoy.1467783698.00" t="ExcludeRecursive" />
