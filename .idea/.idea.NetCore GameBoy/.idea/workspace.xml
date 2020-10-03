@@ -23,10 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="025b4446-29da-46c7-a8c0-980a498bbe6e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/UnitTests/CPUTests/LDTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UnitTests/CPUTests/CPUTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTests/CPUTests/CPUTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hardware/Processor/InstructionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hardware/Processor/InstructionTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Opcodes.xlsm" beforeDir="false" afterPath="$PROJECT_DIR$/Opcodes.xlsm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnitTests/CPUTests/LDTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTests/CPUTests/LDTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,10 +114,10 @@
         <option value="$PROJECT_DIR$/Application/Program.cs" />
         <option value="$PROJECT_DIR$/UnitTests/ApprovalTests/MMUTests/MMUTests.cs" />
         <option value="$PROJECT_DIR$/Hardware/Processor/CPU.cs" />
-        <option value="$PROJECT_DIR$/Hardware/Processor/InstructionTable.cs" />
         <option value="$PROJECT_DIR$/Hardware/Memory/MMU.cs" />
         <option value="$PROJECT_DIR$/Hardware/Registers/RegisterIO.cs" />
         <option value="$PROJECT_DIR$/UnitTests/CPUTests/CPUTests.cs" />
+        <option value="$PROJECT_DIR$/Hardware/Processor/InstructionTable.cs" />
         <option value="$PROJECT_DIR$/UnitTests/CPUTests/LDTests.cs" />
       </list>
     </option>
@@ -226,6 +226,7 @@
       <workItem from="1601591390843" duration="6378000" />
       <workItem from="1601674836939" duration="6482000" />
       <workItem from="1601691150349" duration="932000" />
+      <workItem from="1601696025972" duration="1994000" />
     </task>
     <servers />
   </component>
@@ -415,10 +416,10 @@
     <state width="600" height="427" key="javadoc.popup/0.23.1680.952@0.23.1680.952" timestamp="1601145024248" />
     <state width="600" height="428" key="javadoc.popup/0.23.1680.953@0.23.1680.953" timestamp="1601178396634" />
     <state width="600" height="428" key="javadoc.popup/0.23.1680.956@0.23.1680.956" timestamp="1601008916035" />
-    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup" timestamp="1601679048605">
-      <screen x="0" y="23" width="1680" height="953" />
+    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup" timestamp="1601696753831">
+      <screen x="0" y="23" width="1680" height="952" />
     </state>
-    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup/0.23.1680.952@0.23.1680.952" timestamp="1601595075993" />
+    <state x="476" y="228" width="672" height="676" key="search.everywhere.popup/0.23.1680.952@0.23.1680.952" timestamp="1601696753831" />
     <state x="476" y="228" width="672" height="676" key="search.everywhere.popup/0.23.1680.953@0.23.1680.953" timestamp="1601679048605" />
     <state x="476" y="229" width="672" height="678" key="search.everywhere.popup/0.23.1680.956@0.23.1680.956" timestamp="1601062595152" />
   </component>

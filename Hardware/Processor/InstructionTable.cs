@@ -100,6 +100,7 @@ namespace Hardware.Processor
                 {0x77,   x => new LD(new FullAddress(registers.HL.Get()), registers.A, "LD (HL), A", 8)},
                 {0xE2,   x => new LD(new FullAddress(registers.C.Get()), registers.A, "LD (C),A", 8)},
                 {0xEA, a16 => new LD(new FullAddress(a16), registers.A, "LD (a16),A", 16)},
+                
                 {0x08, a16 => new LD(new FullAddress(a16), registers.SP, "LD (a16),SP", 20)},
                 
                 {0x36,  d8 => new LD(new FullAddress(registers.HL.Get()), d8.ToByteWithAssert(), "LD (HL),d8", 12)},
