@@ -101,12 +101,12 @@
             <e p="MMUTests.cs" t="Include" />
             <e p="MMUTests.MMU_ValidateHexDump.approved.txt" t="Include" />
             <e p="MMUTests.MMU_ValidateHumanReadableDump.approved.txt" t="Include" />
-            <e p="MMUTests.MMU_ValidateHumanReadableDump.received.txt" t="Include" />
           </e>
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="CPUTests" t="Include">
           <e p="CPUTests.cs" t="Include" />
+          <e p="LDTests.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

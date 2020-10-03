@@ -23,67 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="025b4446-29da-46c7-a8c0-980a498bbe6e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Extensions/ushortExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Graphics/GPU.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Instructions/LD.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Instructions/LDH.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Memory/Address.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Memory/ByteMemory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Memory/MMU.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Memory/WordMemory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Processor/CPU.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Processor/ExecutedOpcode.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Processor/InstructionTable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Registers/ByteRegister.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Registers/RegisterIO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Registers/RegisterPair.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hardware/Registers/WordRegister.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Interfaces/IExecutedOpcode.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Interfaces/IGraphicsProcessingUnit.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Interfaces/IInstruction.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Interfaces/IInstructionTable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Interfaces/IMemory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Interfaces/IMemoryManagementUnit.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Interfaces/IRegister.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Interfaces/IRegisterIO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UnitTests/ApprovalTests/MMUTests/MMUTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UnitTests/CPUTests/CPUTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UnitTests/CPUTests/LDTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NetCore GameBoy/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.ApprovalTests/Gameboy.ApprovalTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.ApprovalTests/Gameboy.ApprovalTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.MMU_ValidateHexDump.approved.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTests/ApprovalTests/MMUTests/MMUTests.MMU_ValidateHexDump.approved.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.MMU_ValidateHumanReadableDump.approved.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTests/ApprovalTests/MMUTests/MMUTests.MMU_ValidateHumanReadableDump.approved.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.ApprovalTests/MMUTests/MMUTests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Extensions/Gameboy.Extensions.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Extensions.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Extensions/intExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/intExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Bus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hardware/System/Bus.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/CPU.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/GPU.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.Hardware.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Hardware/Hardware.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Gameboy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hardware/System/Gameboy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/LDHelper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/MMU.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/Register.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/RegisterDictionary.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Hardware/RegisterId.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.IntegrationTests/Gameboy.IntegrationTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.IntegrationTests/Gameboy.IntegrationTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.IntegrationTests/OpcodeTests/OpCodeTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gameboy.IntegrationTests/OpcodeTests/OpCodeTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/ExecutedOpcode.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/Gameboy.Interfaces.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Interfaces/Interfaces.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/ICentralProcessingUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interfaces/ICentralProcessingUnit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/IGraphicsProcessingUnit.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/IMemoryManagementUnit.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/IROMReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interfaces/IROMReader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.Interfaces/Memory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.UnitTests/CPUTests/CPUTests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy.UnitTests/Gameboy.UnitTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTests/UnitTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy/.vscode/tasks.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/.vscode/tasks.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy/Gameboy.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameboy/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/NetCore GameBoy.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnitTests/CPUTests/CPUTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTests/CPUTests/CPUTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +68,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Gameboy.IntegrationTests/OpcodeTests/OpCodeTests.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/RegisterId.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Hardware/Register.cs" />
         <option value="$PROJECT_DIR$/Gameboy.Interfaces/IMemory.cs" />
@@ -174,8 +116,9 @@
         <option value="$PROJECT_DIR$/Hardware/Processor/CPU.cs" />
         <option value="$PROJECT_DIR$/Hardware/Processor/InstructionTable.cs" />
         <option value="$PROJECT_DIR$/Hardware/Memory/MMU.cs" />
-        <option value="$PROJECT_DIR$/UnitTests/CPUTests/CPUTests.cs" />
         <option value="$PROJECT_DIR$/Hardware/Registers/RegisterIO.cs" />
+        <option value="$PROJECT_DIR$/UnitTests/CPUTests/CPUTests.cs" />
+        <option value="$PROJECT_DIR$/UnitTests/CPUTests/LDTests.cs" />
       </list>
     </option>
   </component>
@@ -282,6 +225,7 @@
       <workItem from="1601576929780" duration="6572000" />
       <workItem from="1601591390843" duration="6378000" />
       <workItem from="1601674836939" duration="6482000" />
+      <workItem from="1601691150349" duration="932000" />
     </task>
     <servers />
   </component>
