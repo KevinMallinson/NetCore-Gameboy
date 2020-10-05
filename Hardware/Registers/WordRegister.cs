@@ -10,7 +10,7 @@ namespace Hardware.Registers
 
         public WordRegister(RegisterId id)
         {
-            Id = Id;
+            Id = id;
         }
         
         object IRegister<ushort>.Get() => Get();

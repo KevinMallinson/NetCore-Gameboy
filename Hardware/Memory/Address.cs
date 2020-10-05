@@ -1,22 +1,32 @@
 namespace Hardware.Memory
 {
+    public enum AddressSource
+    {
+        Immediate,
+        Register
+    }
+    
     public class FullAddress
     {
         public ushort Value { get; }
+        public AddressSource Source { get; }
 
-        public FullAddress(ushort address)
+        public FullAddress(ushort address, AddressSource source)
         {
             Value = address;
+            Source = source;
         }
     }
     
     public class HalfAddress
     {
-        public ushort Value { get; }
-
-        public HalfAddress(byte address)
+        public byte Value { get; }
+        public AddressSource Source { get; }
+        
+        public HalfAddress(byte address, AddressSource source)
         {
-            Value = (ushort)(0xFF + address);
+            Value = address;
+            Source = source;
         }
     }
 }

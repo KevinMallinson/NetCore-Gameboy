@@ -1,3 +1,4 @@
+using System;
 using Hardware.System;
 using Interfaces;
 using Xunit;
@@ -6,12 +7,12 @@ namespace UnitTests.CPUTests
 {
     public class LDTests
     {
-        private readonly IRegisterIO _registers;
+        private readonly Random _random;
 
         public LDTests()
         {
             Bus.Init();
-            _registers = Bus.CPU.Registers;
+            _random = new Random();
         }
         
         [Theory]
@@ -64,39 +65,48 @@ namespace UnitTests.CPUTests
         [InlineData(0x7C, "LD", "A", "H", 1, 4, "- - - -")]
         [InlineData(0x7D, "LD", "A", "L", 1, 4, "- - - -")]
         [InlineData(0x7F, "LD", "A", "A", 1, 4, "- - - -")]
-        public static void LoadRegisterToRegister(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags)
+        public void LoadRegisterToRegister(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags)
         {
-            var value = 33;
+            var value = (byte) _random.Next(0, 256);
+            var fromRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(from));
+            fromRegister.Set(value);
 
-            tester
-                .SetFromByteRegister(from)
-                .SetFromValue(value)
-                .SetToByteRegister(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            var toRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(to));    
+            
+            Assert.Equal(value, toRegister.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},{from}", executedOpcode.Opcode);
         }
 
 
         [Theory]
         [InlineData(0xF9, "LD", "SP", "HL", 1, 8, "- - - -")]
-        public static void Method2(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
-        { 
-            var value = 33;
+        public void LoadRegisterPairToWordRegister(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags)
+        {
+            var value = (ushort) _random.Next(0xFF + 1, 0xFFFF + 1);
+            var fromRegisterPair = Bus.CPU.Registers.GetRegisterPair(Enum.Parse<RegisterId>(from));
+            fromRegisterPair.Set(value);
 
-            tester
-                .SetFromRegisterPair(from)
-                .SetFromValue(value)
-                .SetToWordRegister(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            var toWordRegister = Bus.CPU.Registers.GetWordRegister(Enum.Parse<RegisterId>(to));    
+            
+            Assert.Equal(value, toWordRegister.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},{from}", executedOpcode.Opcode);
         }
-
 
         [Theory]
         [InlineData(0x46, "LD", "B", "(HL)",  1, 8 , "- - - -")]
@@ -106,31 +116,143 @@ namespace UnitTests.CPUTests
         [InlineData(0x66, "LD", "H", "(HL)",  1, 8,  "- - - -")]
         [InlineData(0x6E, "LD", "L", "(HL)",  1, 8,  "- - - -")]
         [InlineData(0x7E, "LD", "A", "(HL)",  1, 8,  "- - - -")]
-        [InlineData(0xF2, "LD", "A", "(C)",   2, 8,  "- - - -")]
         [InlineData(0x0A, "LD", "A", "(BC)",  1, 8,  "- - - -")]
         [InlineData(0x1A, "LD", "A", "(DE)",  1, 8,  "- - - -")]
-        [InlineData(0x2A, "LD", "A", "(HL+)", 1, 8,  "- - - -")]
-        [InlineData(0x3A, "LD", "A", "(HL-)", 1, 8,  "- - - -")]
-        [InlineData(0xFA, "LD", "A", "(a16)", 3, 16, "- - - -")]
-        public static void Method3(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        public void LoadRegisterPairMemoryToByteRegister(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
         {
-            tester
-                .SetFromMemoryRegister(from)
-                .SetFromValue(value)
-                .SetToByteRegister(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);
+            var value = (byte) _random.Next(0, 256);
+            var address = (ushort) _random.Next(0x4000, 0x7FFF + 1);
+
+            var fromRegisterPair = Bus.CPU.Registers.GetRegisterPair(Enum.Parse<RegisterId>(from.Replace("(", "").Replace(")", "")));
+            fromRegisterPair.Set(address);
+            
+            Bus.MMU.SetByte(address, value);
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            var toRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(to));    
+            
+            Assert.Equal(value, toRegister.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},{from}", executedOpcode.Opcode);
+        }
+        
+        [Theory]
+        [InlineData(0xF2, "LD", "A", "(C)", 1, 8,  "- - - -")]
+        public void LoadByteRegisterMemoryToByteRegister(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        {
+            var value = (byte) _random.Next(0, 256);
+            var address = (byte) _random.Next(0, 256);
+
+            var fromRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(from.Replace("(", "").Replace(")", "")));
+            fromRegister.Set(address);
+            
+            Bus.MMU.SetByte((ushort)(0xFF00 + address), value);
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            var toRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(to));    
+            
+            Assert.Equal(value, toRegister.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},{from}", executedOpcode.Opcode);
+        }
+        
+        [Theory]
+        [InlineData(0xFA, "LD", "A", "(a16)", 3, 16, "- - - -")]
+        public void LoadMemoryAddressToByteRegister(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        {
+            var value = (byte) _random.Next(0, 256);
+            var address = (byte) _random.Next(0xC000, 0xCFFF + 1);
+            
+            Bus.MMU.SetByte(address, value);
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.MMU.SetWord(0x101, address);
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            var toRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(to));    
+            
+            Assert.Equal(value, toRegister.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},(0x{address:X})", executedOpcode.Opcode);
+        }
+        
+        [Theory]
+        [InlineData(0x2A, "LD", "A", "(HL+)", 1, 8, "- - - -", "HL", 1)]
+        [InlineData(0x3A, "LD", "A", "(HL-)", 1, 8, "- - - -", "HL", -1)]
+        public void LoadMemoryToByteRegisterWithIncrement(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags, string incrementRegister, int incrementValue)
+        {
+            var address = (ushort) _random.Next(0xC000, 0xCFFF + 1);
+            var value = (byte) _random.Next(0, 256);
+            var fromRegisterPair = Bus.CPU.Registers.GetRegisterPair(Enum.Parse<RegisterId>(incrementRegister));
+            fromRegisterPair.Set(address);
+            
+            var incrementRegisterPair = Bus.CPU.Registers.GetRegisterPair(Enum.Parse<RegisterId>(incrementRegister));
+            var expectedIncrementValue = incrementRegisterPair.Get() + incrementValue;
+            
+            Bus.MMU.SetByte(address, value);
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            var toRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(to));    
+            
+            Assert.Equal(value, toRegister.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},{from}", executedOpcode.Opcode);
+            Assert.Equal(expectedIncrementValue, incrementRegisterPair.Get());
         }
 
-
+        [Theory]
+        [InlineData(0x22, "LD", "(HL+)", "A", 1, 8, "- - - -", "HL", 1)]
+        [InlineData(0x32, "LD", "(HL-)", "A", 1, 8, "- - - -", "HL", -1)]
+        public void LoadByteRegisterToMemoryWithIncrement(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags, string incrementRegister, int incrementValue)
+        {
+            var address = (ushort) _random.Next(0xC000, 0xCFFF + 1);
+            var value = (byte) _random.Next(0, 256);
+            
+            var fromRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(from));
+            fromRegister.Set(value);
+            
+            var toRegisterPair = Bus.CPU.Registers.GetRegisterPair(Enum.Parse<RegisterId>(incrementRegister));
+            toRegisterPair.Set(address);
+            var expectedIncrementValue = toRegisterPair.Get() + incrementValue;
+            
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            Assert.Equal(expectedIncrementValue, toRegisterPair.Get());
+            
+            var memory = Bus.MMU.GetByte((ushort)(toRegisterPair.Get() - incrementValue));
+            Assert.Equal(value, memory.Data);
+            Assert.Equal(address, memory.Address);
+            Assert.Equal(address + incrementValue, toRegisterPair.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},{from}", executedOpcode.Opcode);
+        }
+        
         [Theory]
         [InlineData(0x02, "LD", "(BC)",  "A",   1, 8,  "- - - -")]
         [InlineData(0x12, "LD", "(DE)",  "A",   1, 8,  "- - - -")]
-        [InlineData(0x22, "LD", "(HL+)", "A",   1, 8,  "- - - -")]
-        [InlineData(0x32, "LD", "(HL-)", "A",   1, 8,  "- - - -")]
         [InlineData(0x70, "LD", "(HL)",  "B",   1, 8,  "- - - -")]
         [InlineData(0x71, "LD", "(HL)",  "C",   1, 8,  "- - - -")]
         [InlineData(0x72, "LD", "(HL)",  "D",   1, 8,  "- - - -")]
@@ -140,50 +262,25 @@ namespace UnitTests.CPUTests
         [InlineData(0x77, "LD", "(HL)",  "A",   1, 8,  "- - - -")]
         [InlineData(0xE2, "LD", "(C)",   "A",   2, 8,  "- - - -")]
         [InlineData(0xEA, "LD", "(a16)", "A",   3, 16, "- - - -")]
-        public static void Method4(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
-        { 
-            tester
-                .SetFromByteRegister(from)
-                .SetFromValue(value)
-                .SetToMemoryRegister(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);
+        public void LoadByteRegisterToMemory(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        {
+            Assert.Equal(true, false);
         }
 
         [Theory]
         [InlineData(0x08, "LD", "(a16)", "SP",  3, 20, "- - - -")]
-        public static void Method10(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
-        { 
-            tester
-                .SetFromWordRegister(from)
-                .SetFromValue(value)
-                .SetToMemoryAddress(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);
+        public void LoadWordRegisterToMemory(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        {
+            Assert.Equal(true, false);
         }
 
         [Theory]
         [InlineData(0x36, "LD", "(HL)", "d8", 2, 12, "- - - -")]
-        public static void Method5(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
-        { 
-            tester
-                .SetFromImmediateByte(from)
-                .SetFromValue(value)
-                .SetToMemoryRegister(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);
+        public void LoadByteToMemory(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        {
+            Assert.Equal(true, false);
         }
-
-
+        
         [Theory]
         [InlineData(0x06, "LD", "B", "d8", 2, 8, "- - - -")]
         [InlineData(0x16, "LD", "D", "d8", 2, 8, "- - - -")]
@@ -192,95 +289,122 @@ namespace UnitTests.CPUTests
         [InlineData(0x1E, "LD", "E", "d8", 2, 8, "- - - -")]
         [InlineData(0x2E, "LD", "L", "d8", 2, 8, "- - - -")]
         [InlineData(0x3E, "LD", "A", "d8", 2, 8, "- - - -")]
-        public static void Method6(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
-        { 
-            tester
-                .SetFromImmediateByte(from)
-                .SetFromValue(value)
-                .SetToByteRegister(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);
+        public void LoadByteToByteRegister(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        {
+            var value = (byte)_random.Next(0, 256);
+
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.MMU.SetByte(0x101, value);
+
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            var toByteRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(to));
+            Assert.Equal(value, toByteRegister.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},0x{value:X}", executedOpcode.Opcode);
         }
 
         [Theory]
         [InlineData(0x01, "LD", "BC", "d16",   3, 12, "- - - -")]
         [InlineData(0x11, "LD", "DE", "d16",   3, 12, "- - - -")]
         [InlineData(0x21, "LD", "HL", "d16",   3, 12, "- - - -")]
-        public static void Method7(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        public void LoadWordToRegisterPair(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
         {
-            tester
-                .SetFromImmediateWord(from)
-                .SetFromValue(value)
-                .SetToRegisterPair(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);
+            var value = (ushort)_random.Next(0xFF + 1, 0xFFFF + 1);
+
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.MMU.SetWord(0x101, value);
+
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            var toRegisterPair = Bus.CPU.Registers.GetRegisterPair(Enum.Parse<RegisterId>(to));
+            Assert.Equal(value, toRegisterPair.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},0x{value:X}", executedOpcode.Opcode);
         }
         
         [Theory]
         [InlineData(0x31, "LD", "SP", "d16",   3, 12, "- - - -")]
-        public static void Method7(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        public void LoadWordToWordRegister(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
         {
-            tester
-                .SetFromImmediateWord(from)
-                .SetFromValue(value)
-                .SetToWordRegister(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);
+            var value = (ushort)_random.Next(0xFF + 1, 0xFFFF + 1);
+
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.MMU.SetWord(0x101, value);
+
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            var toWordRegister = Bus.CPU.Registers.GetWordRegister(Enum.Parse<RegisterId>(to));
+            Assert.Equal(value, toWordRegister.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},0x{value:X}", executedOpcode.Opcode);
         }
 
         [Theory]
         [InlineData(0xF8, "LD", "HL", "SP+r8", 2, 12, "0 0 H C")]
-        public static void Method7(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags)
+        public void LoadWordRegisterWithOffsetToByteRegister(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags)
         {
-            tester
-                .SetFromWordRegister(from)
-                .SetFromOffset(offset)
-                .SetFromValue(value)
-                .SetToRegisterPair(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);          
+            Assert.Equal(true, false);
         }
         
         [Theory]
         [InlineData(0xE0, "LDH", "(a8)", "A", 2, 12, "- - - -")]
-        public static void Method8(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
-        { 
-            tester
-                .SetFromByteRegister(from)
-                .SetFromValue(value)
-                .SetToUpperMemoryAddress(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);    
+        public void LoadByteRegisterToUpperMemory(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        {
+            var value = (byte)_random.Next(0, 256);
+            var address = (byte)_random.Next(0, 256);
+
+            var fromRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(from));
+            fromRegister.Set(value);
+            
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.MMU.SetWord(0x101, address);
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+
+            var memoryAtAddress = Bus.MMU.GetByte((ushort)(0xFF00 + address));
+            Assert.Equal(value, memoryAtAddress.Data);
+            Assert.Equal(0xFF00 + address, memoryAtAddress.Address);
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} (0x{address:X}),{from}", executedOpcode.Opcode);
         }
 
         [Theory]
         [InlineData(0xF0, "LDH", "A", "(a8)", 2, 12, "- - - -")]
-        public static void Method9(ushort opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
+        public void LoadUpperMemoryToByteRegister(byte opcode, string mnemonic, string to, string from, int length, int cycles, string flags) 
         { 
-            tester
-                .SetFromUpperMemoryAddress(from)
-                .SetFromValue(value)
-                .SetToByteRegister(to)
-                .Load()
-                .AssertValue(value)
-                .AssertPC(length)
-                .AssertCycles(cycles)
-                .AssertFlags(flags);    
+            var value = (byte) _random.Next(0, 256);
+            var address = (byte) _random.Next(0, 256);
+            
+            Bus.MMU.SetByte((ushort)(0xFF00 + address), value);
+            Bus.MMU.SetByte(0x100, opcode);
+            Bus.MMU.SetByte(0x101, address);
+            Bus.CPU.Registers.PC.Set(0x100);
+            var executedOpcode = Bus.CPU.Step();
+            
+            var toRegister = Bus.CPU.Registers.GetByteRegister(Enum.Parse<RegisterId>(to));    
+            
+            Assert.Equal(value, toRegister.Get());
+            Assert.Equal(cycles, executedOpcode.Cycles);
+            Assert.Equal(0x100 + length, Bus.CPU.Registers.PC.Get());
+            Assert.Equal(0x100 + length, executedOpcode.NewProgramCounter);
+            Assert.Equal(flags, Bus.CPU.Flags);
+            Assert.Equal($"{mnemonic} {to},(0x{address:X})", executedOpcode.Opcode);
         }
     }
 }

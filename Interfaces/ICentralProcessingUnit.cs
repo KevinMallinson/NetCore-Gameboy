@@ -7,5 +7,6 @@ namespace Interfaces
     {
         public IRegisterIO Registers { get; }  
         IExecutedOpcode Step();
+        string Flags { get; }
     }
 }

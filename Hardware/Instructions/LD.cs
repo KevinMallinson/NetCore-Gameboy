@@ -27,6 +27,7 @@ namespace Hardware.Instructions
             {
                 to.Set(from);
                 Bus.CPU.Registers.PC.Increment(2);
+                opcodeStr = opcodeStr.Replace("d8", $"0x{from:X}");
                 return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
             };
         }
@@ -37,16 +38,7 @@ namespace Hardware.Instructions
             {
                 to.Set(from);
                 Bus.CPU.Registers.PC.Increment(3);
-                return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
-            };
-        }
-
-        public LD(FullAddress to, IRegisterPair from, string opcodeStr, int cycles)
-        {
-            _executor = () =>
-            {
-                Bus.MMU.SetWord(to.Value, from.Get());
-                Bus.CPU.Registers.PC.Increment(3);
+                opcodeStr = opcodeStr.Replace("d16", $"0x{from:X}");
                 return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
             };
         }
@@ -56,7 +48,8 @@ namespace Hardware.Instructions
             _executor = () =>
             {
                 Bus.MMU.SetByte(to.Value, from);
-                Bus.CPU.Registers.PC.Increment(2);
+                Bus.CPU.Registers.PC.Increment((ushort)(1 + (to.Source == AddressSource.Register ? 1 : 3)));
+                opcodeStr = opcodeStr.Replace("a16", $"0x{to.Value:X}");
                 return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
             };
         }
@@ -67,7 +60,19 @@ namespace Hardware.Instructions
             {
                 Bus.MMU.SetByte(to.Value, from.Get());
                 customLogic?.Invoke();
-                Bus.CPU.Registers.PC.Increment(3);
+                Bus.CPU.Registers.PC.Increment((ushort)(to.Source == AddressSource.Register ? 1 : 3));
+                opcodeStr = opcodeStr.Replace("a16", $"0x{to.Value:X}");
+                return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
+            };
+        }
+        
+        public LD(HalfAddress to, IByteRegister from, string opcodeStr, int cycles)
+        {
+            _executor = () =>
+            {
+                Bus.MMU.SetByte((ushort)(0xFF00 + to.Value), from.Get());
+                Bus.CPU.Registers.PC.Increment((ushort)(to.Source == AddressSource.Register ? 1 : 2));
+                opcodeStr = opcodeStr.Replace("a8", $"0x{to.Value:X}");
                 return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
             };
         }
@@ -78,10 +83,23 @@ namespace Hardware.Instructions
             {
                 to.Set(Bus.MMU.GetByte(from.Value).Data);
                 customLogic?.Invoke();
-                Bus.CPU.Registers.PC.Increment(3);
+                Bus.CPU.Registers.PC.Increment((ushort)(from.Source == AddressSource.Register ? 1 : 3));
+                opcodeStr = opcodeStr.Replace("a16", $"0x{from.Value:X}");
                 return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
             };
         }
+        
+        public LD(IByteRegister to, HalfAddress from, string opcodeStr, int cycles)
+        {
+            _executor = () =>
+            {
+                to.Set(Bus.MMU.GetByte((ushort)(0xFF00 + from.Value)).Data);
+                Bus.CPU.Registers.PC.Increment((ushort)(from.Source == AddressSource.Register ? 1 : 2));
+                opcodeStr = opcodeStr.Replace("a8", $"0x{from.Value:X}");
+                return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
+            };
+        }
+
 
         public LD(IWordRegister to, IRegisterPair from, string opcodeStr, int cycles)
         {
@@ -99,6 +117,7 @@ namespace Hardware.Instructions
             {
                 to.Set(from);
                 Bus.CPU.Registers.PC.Increment(3);
+                opcodeStr = opcodeStr.Replace("d16", $"0x{from:X}");
                 return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
             };
         }
@@ -108,7 +127,8 @@ namespace Hardware.Instructions
             _executor = () =>
             {
                 Bus.MMU.SetWord(to.Value, from.Get());
-                Bus.CPU.Registers.PC.Increment(3);
+                Bus.CPU.Registers.PC.Increment((ushort)(to.Source == AddressSource.Register ? 1 : 3));
+                opcodeStr = opcodeStr.Replace("a16", $"0x{to.Value:X}");
                 return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
             };
         }

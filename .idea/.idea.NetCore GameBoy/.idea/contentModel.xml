@@ -40,6 +40,7 @@
         </e>
         <e p="Hardware.csproj" t="IncludeRecursive" />
         <e p="Instructions" t="Include">
+          <e p="InstructionBuilder.cs" t="Include" />
           <e p="LD.cs" t="Include" />
           <e p="LDH.cs" t="Include" />
         </e>
@@ -78,6 +79,7 @@
         <e p="IExecutedOpcode.cs" t="Include" />
         <e p="IGraphicsProcessingUnit.cs" t="Include" />
         <e p="IInstruction.cs" t="Include" />
+        <e p="IInstructionBuilder.cs" t="Include" />
         <e p="IInstructionTable.cs" t="Include" />
         <e p="IMemory.cs" t="Include" />
         <e p="IMemoryManagementUnit.cs" t="Include" />

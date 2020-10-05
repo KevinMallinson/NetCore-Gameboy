@@ -15,7 +15,8 @@ namespace Hardware.Instructions
             _executor = () =>
             {
                 to.Set(Bus.MMU.GetByte((ushort)(0xFF00 + from.Value)).Data);
-                Bus.CPU.Registers.PC.Increment(2);
+                Bus.CPU.Registers.PC.Increment((ushort)(from.Source == AddressSource.Register ? 1 : 2));
+                opcodeStr = opcodeStr.Replace("a8", $"0x{from.Value:X}");
                 return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LDH);
             };
         }
@@ -25,7 +26,8 @@ namespace Hardware.Instructions
             _executor = () =>
             {
                 Bus.MMU.SetByte((ushort)(0xFF00 + to.Value), from.Get());
-                Bus.CPU.Registers.PC.Increment(2);
+                Bus.CPU.Registers.PC.Increment((ushort)(to.Source == AddressSource.Register ? 1 : 2));
+                opcodeStr = opcodeStr.Replace("a8", $"0x{to.Value:X}");
                 return new ExecutedOpcode(cycles, opcodeStr, OpcodeType.LD);
             };
         }
